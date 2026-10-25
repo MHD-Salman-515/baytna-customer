@@ -68,22 +68,28 @@ grep -c -e CANARY-123 -e last-otp -e x-dev-otp-key build/web/main.dart.js   # �
 ### Tests
 
 ```bash
+flutter analyze                                 # must stay at zero issues
 flutter test                                    # unit + bloc tests (no network)
 dart run build_runner build --delete-conflicting-outputs   # after changing DI/models
 flutter gen-l10n                                # after changing ARB files (also runs on build)
 ```
 
-**Live end-to-end login** (real UI in Chrome against staging, with screenshots in
-`build/e2e_screenshots/`). Needs a [chromedriver](https://googlechromelabs.github.io/chrome-for-testing/)
-matching your Chrome version, running on port 4444:
+**Live end-to-end login** (real UI in Chrome against staging: country → phone →
+dev OTP autofill → home → logout). Writes screenshots and the app's request log
+(`log.txt`) to `build/e2e_screenshots/`. Needs a
+[chromedriver](https://googlechromelabs.github.io/chrome-for-testing/) matching
+your Chrome version, running on port 4444:
 
 ```bash
 chromedriver --port=4444 &
-flutter drive -d chrome \
+flutter drive -d web-server --browser-name=chrome \
   --driver=test_driver/integration_test.dart \
   --target=integration_test/login_e2e_test.dart \
   --dart-define-from-file=secrets.json
 ```
+
+Use `-d web-server` (chromedriver owns the browser); `-d chrome` hangs after
+launch. The test requests a real OTP, so wait 60 s between runs (cooldown).
 
 ---
 
@@ -231,6 +237,3 @@ Known limitations:
   response is lost (connection drops), the app still holds the old refresh
   token. Its next use triggers reuse detection, and the user is signed out
   cleanly. That's unavoidable with rotating tokens and is handled, not silent.
-- **`flutter analyze` on this machine:** the Homebrew Flutter install lacks
-  `analysis_server_aot.dart.snapshot`. Reinstall Flutter (or use the IDE
-  analyzer) if `flutter analyze` fails to launch.

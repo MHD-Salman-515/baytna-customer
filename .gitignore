@@ -17,7 +17,8 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 # Flutter/Dart/Pub related
 **/doc/api/

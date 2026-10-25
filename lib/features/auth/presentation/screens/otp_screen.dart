@@ -1,3 +1,5 @@
+import 'package:baytna_customer/core/dev/dev_otp.dart';
+import 'package:baytna_customer/core/dev/dev_otp_button.dart';
 import 'package:baytna_customer/core/di/injection.dart';
 import 'package:baytna_customer/core/localization/l10n.dart';
 import 'package:baytna_customer/core/widgets/failure_message.dart';
@@ -97,6 +99,14 @@ class _OtpBody extends StatelessWidget {
             ],
             const SizedBox(height: 16),
             _ResendRow(state: state),
+            // Constant-false in release: the compiler removes this branch.
+            if (DevOtp.enabled) ...[
+              const SizedBox(height: 16),
+              DevOtpButton(
+                phoneE164: bloc.phone,
+                onCode: (code) => bloc.add(OtpCodeChanged(code)),
+              ),
+            ],
             const Spacer(),
             PrimaryButton(
               key: const ValueKey('verify'),

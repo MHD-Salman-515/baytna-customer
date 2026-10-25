@@ -1,4 +1,6 @@
 import 'package:baytna_customer/core/config/app_config.dart';
+import 'package:baytna_customer/core/localization/locale_cubit.dart';
+import 'package:baytna_customer/core/network/accept_language_interceptor.dart';
 import 'package:baytna_customer/core/network/dio_factory.dart';
 import 'package:baytna_customer/core/network/server_status.dart';
 import 'package:baytna_customer/core/network/token_refresher.dart';
@@ -19,10 +21,12 @@ abstract class NetworkModule {
     ServerStatus status,
     TokenStorage storage,
     TokenRefresher refresher,
+    LocaleCubit locale,
   ) => DioFactory.createApiDio(
     config: config,
     status: status,
     storage: storage,
     refresher: refresher,
+    extra: [AcceptLanguageInterceptor(() => locale.state.languageCode)],
   );
 }

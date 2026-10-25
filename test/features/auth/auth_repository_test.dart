@@ -10,6 +10,8 @@ import 'package:baytna_customer/features/auth/data/datasources/auth_local_data_s
 import 'package:baytna_customer/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:baytna_customer/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:baytna_customer/features/auth/domain/auth_failures.dart';
+import 'package:baytna_customer/features/auth/domain/entities/auth_session.dart';
+import 'package:baytna_customer/features/auth/domain/entities/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -79,16 +81,45 @@ void main() {
     expect((invalid as Err).failure, isA<InvalidPhoneNumber>());
   });
 
-  test('successful verify persists tokens and returns the session', () async {
+  test('successful verify (verbatim staging payload) persists tokens and maps the user', () async {
     final r = await repo({
       'POST /api/v1/auth/otp/verify': (_, _) async => FakeBackend.ok({
         'accessToken': 'a',
         'refreshToken': 'r',
         'isNewUser': true,
-        'user': {'id': 'u1', 'phone': '+963911111111'},
+        'user': {
+          'isDeleted': false,
+          'deletedAt': null,
+          'phone': '+963911111111',
+          'countryId': '6adbb9bbd141d68e87375528',
+          'cityId': null,
+          'roles': ['CUSTOMER'],
+          'status': 'ACTIVE',
+          'lastLoginAt': '2026-10-25T13:35:14.320Z',
+          'locale': 'ar',
+          'createdAt': '2026-10-25T13:35:14.095Z',
+          'updatedAt': '2026-10-25T13:35:14.095Z',
+          'id': '6ade05927d05e2dd2b9d522e',
+        },
       }),
     }).verifyOtp(countryId: 'c', phone: '+963911111111', code: '123456');
-    expect(r, isA<Ok<Object?>>());
+
+    final session = (r as Ok<AuthSession>).value;
+    expect(session.isNewUser, isTrue);
+    expect(
+      session.user,
+      User(
+        id: '6ade05927d05e2dd2b9d522e',
+        phone: '+963911111111',
+        countryId: '6adbb9bbd141d68e87375528',
+        roles: const ['CUSTOMER'],
+        status: 'ACTIVE',
+        locale: 'ar',
+        createdAt: DateTime.utc(2026, 10, 25, 13, 35, 14, 95),
+        lastLoginAt: DateTime.utc(2026, 10, 25, 13, 35, 14, 320),
+      ),
+    );
+    expect(session.user.isCustomer, isTrue);
     expect(tokens.tokens?.refreshToken, 'r');
   });
 }

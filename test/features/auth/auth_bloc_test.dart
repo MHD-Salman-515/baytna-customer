@@ -16,7 +16,7 @@ class _MockRepo extends Mock implements AuthRepository;
 class _MockLocale extends Mock implements LocaleCubit;
 
 void main() {
-  const user = User(id: 'u1', phone: '+963911111111');
+  const user = User(id: 'u1', phone: '+963911111111', countryId: 'c1');
   late _MockRepo repo;
   late _MockLocale locale;
   late SessionEvents events;

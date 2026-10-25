@@ -24,7 +24,7 @@ class _ManualTicker implements Ticker {
 
 void main() {
   const phone = '+963911111111';
-  const session = AuthSession(user: User(id: 'u1', phone: phone), isNewUser: false);
+  const session = AuthSession(user: User(id: 'u1', phone: phone, countryId: 'c1'), isNewUser: false);
   late _MockRepo repo;
   late _ManualTicker ticker;
 

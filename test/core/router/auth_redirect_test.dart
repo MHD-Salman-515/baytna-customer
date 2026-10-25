@@ -4,7 +4,7 @@ import 'package:baytna_customer/features/auth/presentation/bloc/auth/auth_bloc.d
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const authed = AuthAuthenticated(User(id: 'u', phone: '+963911111111'));
+  const authed = AuthAuthenticated(User(id: 'u', phone: '+963911111111', countryId: 'c'));
   const guest = AuthUnauthenticated();
   const unknown = AuthUnknown();
   String? go(AuthState s, String loc) => authRedirect(s, Uri.parse(loc));

@@ -18,6 +18,7 @@ import 'package:baytna_customer/core/network/network_module.dart' as _i979;
 import 'package:baytna_customer/core/network/server_status.dart' as _i698;
 import 'package:baytna_customer/core/network/session_events.dart' as _i809;
 import 'package:baytna_customer/core/network/token_refresher.dart' as _i293;
+import 'package:baytna_customer/core/router/app_router.dart' as _i409;
 import 'package:baytna_customer/core/storage/secure_token_storage.dart'
     as _i231;
 import 'package:baytna_customer/core/storage/storage_module.dart' as _i765;
@@ -143,6 +144,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i30.LocaleCubit>(),
         gh<_i809.SessionEvents>(),
       ),
+    );
+    gh.lazySingleton<_i409.AppRouter>(
+      () => _i409.AppRouter(gh<_i390.AuthBloc>()),
     );
     return this;
   }

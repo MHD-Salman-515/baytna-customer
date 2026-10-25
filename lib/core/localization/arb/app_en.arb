@@ -1,0 +1,51 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Baytna",
+  "appTagline": "Trusted home services at your fingertips",
+  "switchLanguage": "العربية",
+  "retry": "Try again",
+  "continueAction": "Continue",
+
+  "serverWakingUp": "The server is waking up — this can take a minute…",
+
+  "countrySelectTitle": "Choose your country",
+  "countrySelectSubtitle": "We show services and prices for your country",
+  "countriesEmpty": "No countries are available right now",
+
+  "phoneTitle": "Phone number",
+  "phoneSubtitle": "Enter your mobile number and we'll text you a verification code",
+  "phoneFieldLabel": "Mobile number",
+  "phoneInvalid": "Enter a valid phone number",
+  "phoneRejected": "This number isn't valid for the selected country",
+  "sendCode": "Send code",
+
+  "otpTitle": "Verification code",
+  "otpSubtitle": "Enter the 6-digit code sent to {phone}",
+  "otpVerify": "Verify",
+  "otpResendIn": "You can resend in {seconds, plural, =1{1 second} other{{seconds} seconds}}",
+  "otpResend": "Resend code",
+  "otpResent": "A new code has been sent",
+  "otpInvalid": "The code is incorrect or has expired",
+  "otpTooManyAttempts": "Too many incorrect attempts. Request a new code to continue.",
+  "changeNumber": "Change number",
+
+  "homeTitle": "Home",
+  "homeWelcome": "Welcome to Baytna",
+  "homeSignedInAs": "Signed in as",
+  "homeComingSoon": "Service booking is coming soon",
+  "logout": "Log out",
+  "sessionExpired": "Your session has ended. Please log in again.",
+
+  "errorNetwork": "Couldn't connect. Check your internet connection.",
+  "errorTimeout": "The server took too long to respond. Please try again.",
+  "errorServer": "Something went wrong on our side. Please try later.",
+  "errorRateLimited": "Too many requests. Please wait a moment and try again.",
+  "errorValidation": "Some of the details you entered are invalid.",
+  "errorUnauthorized": "You don't have permission to do that.",
+  "errorNotFound": "We couldn't find what you were looking for.",
+  "errorUnknown": "Something unexpected happened.",
+
+  "devFillOtp": "Autofill code (dev mode)",
+  "devOtpUnavailable": "Couldn't fetch the code: {reason}"
+}

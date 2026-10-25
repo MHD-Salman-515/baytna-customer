@@ -1,0 +1,57 @@
+{
+  "@@locale": "ar",
+
+  "appTitle": "بيتنا",
+  "@appTitle": { "description": "App name shown on splash and window title." },
+  "appTagline": "خدمات منزلية موثوقة بين يديك",
+  "switchLanguage": "English",
+  "@switchLanguage": { "description": "Label of the button that switches to the OTHER language, written in that language." },
+  "retry": "إعادة المحاولة",
+  "continueAction": "متابعة",
+
+  "serverWakingUp": "الخادم يستيقظ، قد يستغرق ذلك دقيقة…",
+  "@serverWakingUp": { "description": "Shown when a request is slow because the staging server is cold-starting." },
+
+  "countrySelectTitle": "اختر بلدك",
+  "countrySelectSubtitle": "نعرض الخدمات والأسعار حسب بلدك",
+  "countriesEmpty": "لا توجد دول متاحة حالياً",
+
+  "phoneTitle": "رقم الهاتف",
+  "phoneSubtitle": "أدخل رقم هاتفك المحمول وسنرسل لك رمز تحقق",
+  "phoneFieldLabel": "رقم الهاتف المحمول",
+  "phoneInvalid": "أدخل رقم هاتف صحيحاً",
+  "phoneRejected": "هذا الرقم غير صالح للبلد المختار",
+  "sendCode": "إرسال الرمز",
+
+  "otpTitle": "رمز التحقق",
+  "otpSubtitle": "أدخل الرمز المكوّن من 6 أرقام المرسل إلى {phone}",
+  "@otpSubtitle": { "placeholders": { "phone": { "type": "String" } } },
+  "otpVerify": "تحقق",
+  "otpResendIn": "يمكنك إعادة الإرسال بعد {seconds, plural, =1{ثانية واحدة} =2{ثانيتين} few{{seconds} ثوانٍ} other{{seconds} ثانية}}",
+  "@otpResendIn": { "placeholders": { "seconds": { "type": "int" } } },
+  "otpResend": "إعادة إرسال الرمز",
+  "otpResent": "تم إرسال رمز جديد",
+  "otpInvalid": "الرمز غير صحيح أو منتهي الصلاحية",
+  "otpTooManyAttempts": "محاولات خاطئة كثيرة. اطلب رمزاً جديداً للمتابعة.",
+  "changeNumber": "تغيير الرقم",
+
+  "homeTitle": "الرئيسية",
+  "homeWelcome": "أهلاً بك في بيتنا",
+  "homeSignedInAs": "تم تسجيل الدخول بالرقم",
+  "homeComingSoon": "حجز الخدمات قادم قريباً",
+  "logout": "تسجيل الخروج",
+  "sessionExpired": "انتهت جلستك. يرجى تسجيل الدخول مجدداً.",
+
+  "errorNetwork": "تعذّر الاتصال. تحقق من اتصالك بالإنترنت.",
+  "errorTimeout": "استغرق الخادم وقتاً طويلاً للرد. حاول مجدداً.",
+  "errorServer": "حدث خطأ في الخادم. حاول لاحقاً.",
+  "errorRateLimited": "طلبات كثيرة. انتظر قليلاً ثم حاول مجدداً.",
+  "errorValidation": "البيانات المدخلة غير صحيحة.",
+  "errorUnauthorized": "ليست لديك صلاحية للقيام بذلك.",
+  "errorNotFound": "العنصر المطلوب غير موجود.",
+  "errorUnknown": "حدث خطأ غير متوقع.",
+
+  "devFillOtp": "تعبئة الرمز تلقائياً (وضع التطوير)",
+  "devOtpUnavailable": "تعذّر جلب الرمز: {reason}",
+  "@devOtpUnavailable": { "placeholders": { "reason": { "type": "String" } } }
+}

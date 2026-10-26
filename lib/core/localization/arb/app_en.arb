@@ -66,5 +66,19 @@
   "priceFixed": "{price} · fixed price",
   "@priceFixed": { "placeholders": { "price": { "type": "String" } } },
   "priceBySize": "From {price}",
-  "@priceBySize": { "placeholders": { "price": { "type": "String" } } }
+  "@priceBySize": { "placeholders": { "price": { "type": "String" } } },
+
+  "workerProfileTitle": "Profile",
+  "workerServesCities": "Works in: {cities}",
+  "@workerServesCities": { "placeholders": { "cities": { "type": "String" } } },
+  "workerAbout": "About her",
+  "workerServices": "Her services and prices",
+  "offeringNotBookable": "This service can't be booked in the app yet.",
+  "pricingExplainHourly": "Charged by the hour: {rate} per hour.",
+  "@pricingExplainHourly": { "placeholders": { "rate": { "type": "String" } } },
+  "pricingExplainBySize": "Priced by the number of rooms, from {price}.",
+  "@pricingExplainBySize": { "placeholders": { "price": { "type": "String" } } },
+  "pricingExplainFixed": "One fixed price for the whole job: {price}.",
+  "@pricingExplainFixed": { "placeholders": { "price": { "type": "String" } } },
+  "pricingExplainUnknown": "You'll see the price before you confirm."
 }

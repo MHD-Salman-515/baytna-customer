@@ -421,6 +421,60 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'يبدأ من {price}'**
   String priceBySize(String price);
+
+  /// No description provided for @workerProfileTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الملف الشخصي'**
+  String get workerProfileTitle;
+
+  /// No description provided for @workerServesCities.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعمل في: {cities}'**
+  String workerServesCities(String cities);
+
+  /// No description provided for @workerAbout.
+  ///
+  /// In ar, this message translates to:
+  /// **'نبذة عنها'**
+  String get workerAbout;
+
+  /// No description provided for @workerServices.
+  ///
+  /// In ar, this message translates to:
+  /// **'خدماتها وأسعارها'**
+  String get workerServices;
+
+  /// No description provided for @offeringNotBookable.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يمكن حجز هذه الخدمة من التطبيق بعد.'**
+  String get offeringNotBookable;
+
+  /// No description provided for @pricingExplainHourly.
+  ///
+  /// In ar, this message translates to:
+  /// **'تُحسب بالساعة: {rate} لكل ساعة.'**
+  String pricingExplainHourly(String rate);
+
+  /// No description provided for @pricingExplainBySize.
+  ///
+  /// In ar, this message translates to:
+  /// **'يُحسب السعر حسب عدد الغرف، ويبدأ من {price}.'**
+  String pricingExplainBySize(String price);
+
+  /// No description provided for @pricingExplainFixed.
+  ///
+  /// In ar, this message translates to:
+  /// **'سعر ثابت للخدمة كاملة: {price}.'**
+  String pricingExplainFixed(String price);
+
+  /// No description provided for @pricingExplainUnknown.
+  ///
+  /// In ar, this message translates to:
+  /// **'ستعرف السعر قبل تأكيد الحجز.'**
+  String get pricingExplainUnknown;
 }
 
 class _AppLocalizationsDelegate

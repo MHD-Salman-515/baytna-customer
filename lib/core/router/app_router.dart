@@ -10,6 +10,7 @@ import 'package:baytna_customer/features/auth/presentation/screens/phone_entry_s
 import 'package:baytna_customer/features/auth/presentation/screens/splash_screen.dart';
 import 'package:baytna_customer/features/home/presentation/screens/home_screen.dart';
 import 'package:baytna_customer/features/workers/presentation/screens/browse_workers_screen.dart';
+import 'package:baytna_customer/features/workers/presentation/screens/worker_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
@@ -48,6 +49,17 @@ class AppRouter {
           serviceId: state.uri.queryParameters['serviceId']!,
           cityId: state.uri.queryParameters['cityId'],
         ),
+        routes: [
+          GoRoute(
+            path: ':workerId',
+            redirect: (_, state) => _requireOrHome(state, ['serviceId', 'cityId']),
+            builder: (_, state) => WorkerDetailScreen(
+              workerId: state.pathParameters['workerId']!,
+              serviceId: state.uri.queryParameters['serviceId']!,
+              cityId: state.uri.queryParameters['cityId']!,
+            ),
+          ),
+        ],
       ),
     ],
     errorBuilder: (context, state) => const _NotFoundScreen(),

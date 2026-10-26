@@ -199,4 +199,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String priceBySize(String price) {
     return 'From $price';
   }
+
+  @override
+  String get workerProfileTitle => 'Profile';
+
+  @override
+  String workerServesCities(String cities) {
+    return 'Works in: $cities';
+  }
+
+  @override
+  String get workerAbout => 'About her';
+
+  @override
+  String get workerServices => 'Her services and prices';
+
+  @override
+  String get offeringNotBookable =>
+      'This service can\'t be booked in the app yet.';
+
+  @override
+  String pricingExplainHourly(String rate) {
+    return 'Charged by the hour: $rate per hour.';
+  }
+
+  @override
+  String pricingExplainBySize(String price) {
+    return 'Priced by the number of rooms, from $price.';
+  }
+
+  @override
+  String pricingExplainFixed(String price) {
+    return 'One fixed price for the whole job: $price.';
+  }
+
+  @override
+  String get pricingExplainUnknown =>
+      'You\'ll see the price before you confirm.';
 }

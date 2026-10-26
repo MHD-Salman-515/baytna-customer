@@ -193,4 +193,39 @@ class AppLocalizationsAr extends AppLocalizations {
   String priceBySize(String price) {
     return 'يبدأ من $price';
   }
+
+  @override
+  String get workerProfileTitle => 'الملف الشخصي';
+
+  @override
+  String workerServesCities(String cities) {
+    return 'تعمل في: $cities';
+  }
+
+  @override
+  String get workerAbout => 'نبذة عنها';
+
+  @override
+  String get workerServices => 'خدماتها وأسعارها';
+
+  @override
+  String get offeringNotBookable => 'لا يمكن حجز هذه الخدمة من التطبيق بعد.';
+
+  @override
+  String pricingExplainHourly(String rate) {
+    return 'تُحسب بالساعة: $rate لكل ساعة.';
+  }
+
+  @override
+  String pricingExplainBySize(String price) {
+    return 'يُحسب السعر حسب عدد الغرف، ويبدأ من $price.';
+  }
+
+  @override
+  String pricingExplainFixed(String price) {
+    return 'سعر ثابت للخدمة كاملة: $price.';
+  }
+
+  @override
+  String get pricingExplainUnknown => 'ستعرف السعر قبل تأكيد الحجز.';
 }

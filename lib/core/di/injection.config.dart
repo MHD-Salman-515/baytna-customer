@@ -71,6 +71,8 @@ import 'package:baytna_customer/features/workers/domain/repositories/worker_repo
     as _i607;
 import 'package:baytna_customer/features/workers/presentation/bloc/browse/browse_workers_bloc.dart'
     as _i197;
+import 'package:baytna_customer/features/workers/presentation/bloc/detail/worker_detail_bloc.dart'
+    as _i514;
 import 'package:dio/dio.dart' as _i361;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
@@ -173,6 +175,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i607.WorkerRepository>(),
         gh<_i501.CityRepository>(),
         gh<_i872.CitySelection>(),
+      ),
+    );
+    gh.factory<_i514.WorkerDetailBloc>(
+      () => _i514.WorkerDetailBloc(
+        gh<_i607.WorkerRepository>(),
+        gh<_i501.CityRepository>(),
       ),
     );
     gh.factoryParam<_i866.PhoneBloc, String, dynamic>(

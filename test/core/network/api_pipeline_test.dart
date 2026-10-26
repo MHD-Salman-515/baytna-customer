@@ -227,4 +227,45 @@ void main() {
       expect(h.expiredCount, 0);
     });
   });
+
+  group('worker-app carry-overs', () {
+    test('paginated responses keep meta alongside data', () async {
+      final h = _Harness({
+        'GET /api/v1/cities': (_, _) async => (
+          200,
+          {
+            'success': true,
+            'data': [
+              {'id': 'c1'},
+              {'id': 'c2'},
+            ],
+            'meta': {'page': 1, 'limit': 2, 'total': 3, 'totalPages': 2},
+          },
+        ),
+      });
+      final page = await h.api.getPage<Object?>(
+        '/cities',
+        decodeItem: (j) => j['id'],
+        authenticated: false,
+      );
+      expect(page.items, ['c1', 'c2']);
+      expect(page.meta.total, 3);
+      expect(page.meta.hasNext, isTrue);
+    });
+
+    test('a 504 on a POST is NOT retried (the booking may have landed)', () async {
+      final h = _Harness(
+        {'POST /api/v1/bookings': (_, _) async => (504, null)},
+        tokens: AuthTokens(
+          accessToken: _jwt(DateTime.now().add(const Duration(hours: 1))),
+          refreshToken: 'r',
+        ),
+      );
+      await expectLater(
+        h.api.post('/bookings', body: <String, Object?>{}, decode: asJson),
+        throwsA(isA<ServerFailure>()),
+      );
+      expect(h.backend.count('POST /api/v1/bookings'), 1);
+    });
+  });
 }

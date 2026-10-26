@@ -23,6 +23,7 @@ import 'package:baytna_customer/core/storage/secure_token_storage.dart'
     as _i231;
 import 'package:baytna_customer/core/storage/storage_module.dart' as _i765;
 import 'package:baytna_customer/core/storage/token_storage.dart' as _i372;
+import 'package:baytna_customer/core/utils/clock.dart' as _i759;
 import 'package:baytna_customer/core/utils/ticker.dart' as _i217;
 import 'package:baytna_customer/features/auth/data/datasources/auth_local_data_source.dart'
     as _i784;
@@ -40,6 +41,12 @@ import 'package:baytna_customer/features/auth/presentation/bloc/otp/otp_bloc.dar
     as _i451;
 import 'package:baytna_customer/features/auth/presentation/bloc/phone/phone_bloc.dart'
     as _i866;
+import 'package:baytna_customer/features/cities/data/datasources/city_remote_data_source.dart'
+    as _i657;
+import 'package:baytna_customer/features/cities/data/repositories/city_repository_impl.dart'
+    as _i948;
+import 'package:baytna_customer/features/cities/domain/repositories/city_repository.dart'
+    as _i501;
 import 'package:baytna_customer/features/countries/data/datasources/country_remote_data_source.dart'
     as _i1003;
 import 'package:baytna_customer/features/countries/data/repositories/country_repository_impl.dart'
@@ -61,6 +68,7 @@ extension GetItInjectableX on _i174.GetIt {
     final appModule = _$AppModule();
     final storageModule = _$StorageModule();
     final networkModule = _$NetworkModule();
+    gh.factory<_i759.Clock>(() => const _i759.Clock());
     gh.factory<_i217.Ticker>(() => const _i217.Ticker());
     gh.singleton<_i1002.AppConfig>(() => appModule.config);
     gh.lazySingleton<_i698.ServerStatus>(() => _i698.ServerStatus());
@@ -107,11 +115,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i234.AuthRemoteDataSource>(
       () => _i234.AuthRemoteDataSource(gh<_i36.ApiClient>()),
     );
+    gh.lazySingleton<_i657.CityRemoteDataSource>(
+      () => _i657.CityRemoteDataSource(gh<_i36.ApiClient>()),
+    );
     gh.lazySingleton<_i1003.CountryRemoteDataSource>(
       () => _i1003.CountryRemoteDataSource(gh<_i36.ApiClient>()),
     );
     gh.lazySingleton<_i830.CountryRepository>(
       () => _i1054.CountryRepositoryImpl(gh<_i1003.CountryRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i501.CityRepository>(
+      () => _i948.CityRepositoryImpl(gh<_i657.CityRemoteDataSource>()),
     );
     gh.factory<_i67.CountriesBloc>(
       () => _i67.CountriesBloc(gh<_i830.CountryRepository>()),

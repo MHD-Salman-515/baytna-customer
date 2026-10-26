@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:baytna_customer/core/network/replay.dart';
 import 'package:baytna_customer/core/network/server_status.dart';
 import 'package:dio/dio.dart';
 
@@ -8,6 +9,11 @@ import 'package:dio/dio.dart';
 ///    the UI shows "waking up" instead of a spinner that looks stuck;
 ///  * retries 502/503/504 (what the proxy returns while the instance boots)
 ///    a few times with a delay, keeping the waking-up state on meanwhile.
+///
+/// A 504 is only retried for idempotent methods: the gateway gave up waiting,
+/// but the app behind it may still have processed the request — retrying
+/// POST /bookings then could book her twice (the backend doesn't dedupe).
+/// 502/503 mean the request never reached the app, so retrying is always safe.
 ///
 /// Must be the FIRST interceptor so its timer covers the whole request,
 /// including time spent queued behind a token refresh.
@@ -47,7 +53,8 @@ class WakeUpInterceptor extends Interceptor {
     final tracker = _tracker(options);
     final attempt = (options.extra[_attemptKey] as int?) ?? 0;
     final status = err.response?.statusCode;
-    final isColdStart = status == 502 || status == 503 || status == 504;
+    final isColdStart =
+        status == 502 || status == 503 || (status == 504 && _isIdempotent(options.method));
 
     if (!isColdStart || attempt >= maxRetries) {
       tracker?.finish();
@@ -57,6 +64,7 @@ class WakeUpInterceptor extends Interceptor {
     tracker?.markSlow();
     await Future<void>.delayed(retryDelay);
     options.extra[_attemptKey] = attempt + 1;
+    replayableBody(options);
     try {
       // The retry runs the full interceptor chain itself, so its outcome is
       // final: resolve/reject without re-running later interceptors.
@@ -67,6 +75,9 @@ class WakeUpInterceptor extends Interceptor {
       tracker?.finish();
     }
   }
+
+  static bool _isIdempotent(String method) =>
+      const {'GET', 'HEAD', 'PUT', 'DELETE', 'OPTIONS'}.contains(method.toUpperCase());
 
   _Tracker? _tracker(RequestOptions options) =>
       options.extra[_trackerKey] as _Tracker?;

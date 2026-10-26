@@ -1,5 +1,8 @@
 import 'package:baytna_customer/core/network/auth_interceptor.dart';
+import 'package:baytna_customer/core/network/envelope_interceptor.dart';
 import 'package:baytna_customer/core/network/error_mapper.dart';
+import 'package:baytna_customer/core/network/json.dart';
+import 'package:baytna_customer/core/network/paged.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -22,44 +25,60 @@ class ApiClient {
     Map<String, Object?>? query,
     Map<String, String>? headers,
     bool authenticated = true,
-  }) => _send('GET', path, decode, query: query, headers: headers, authenticated: authenticated);
+  }) async => decode(
+    (await _send('GET', path, query: query, headers: headers, authenticated: authenticated)).data,
+  );
+
+  /// GET for paginated endpoints: the items in `data` plus the `meta` that
+  /// the envelope carries alongside it.
+  Future<Paged<T>> getPage<T>(
+    String path, {
+    required ItemDecoder<T> decodeItem,
+    Map<String, Object?>? query,
+    bool authenticated = true,
+  }) async {
+    final response = await _send('GET', path, query: query, authenticated: authenticated);
+    final items = asJsonList(response.data).map(decodeItem).toList(growable: false);
+    return Paged(
+      items: items,
+      meta: PageMeta.fromJson(response.extra[EnvelopeInterceptor.metaKey], itemCount: items.length),
+    );
+  }
 
   Future<T> post<T>(
     String path, {
     required Decoder<T> decode,
     Object? body,
     bool authenticated = true,
-  }) => _send('POST', path, decode, body: body, authenticated: authenticated);
+  }) async => decode((await _send('POST', path, body: body, authenticated: authenticated)).data);
 
   Future<T> patch<T>(
     String path, {
     required Decoder<T> decode,
     Object? body,
     bool authenticated = true,
-  }) => _send('PATCH', path, decode, body: body, authenticated: authenticated);
+  }) async => decode((await _send('PATCH', path, body: body, authenticated: authenticated)).data);
 
   Future<T> delete<T>(
     String path, {
     required Decoder<T> decode,
     Object? body,
     bool authenticated = true,
-  }) => _send('DELETE', path, decode, body: body, authenticated: authenticated);
+  }) async => decode((await _send('DELETE', path, body: body, authenticated: authenticated)).data);
 
   /// For endpoints whose payload is irrelevant (e.g. 204 No Content).
   static void ignore(Object? _) {}
 
-  Future<T> _send<T>(
+  Future<Response<dynamic>> _send(
     String method,
-    String path,
-    Decoder<T> decode, {
+    String path, {
     required bool authenticated,
     Object? body,
     Map<String, Object?>? query,
     Map<String, String>? headers,
   }) async {
-    final Response<dynamic> response;
     try {
-      response = await _dio.request<dynamic>(
+      return await _dio.request<dynamic>(
         path,
         data: body,
         queryParameters: query,
@@ -72,6 +91,5 @@ class ApiClient {
     } on DioException catch (e) {
       throw ErrorMapper.map(e);
     }
-    return decode(response.data);
   }
 }

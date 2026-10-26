@@ -1,5 +1,6 @@
 import 'package:baytna_customer/core/error/failure.dart';
 import 'package:baytna_customer/core/network/auth_interceptor.dart';
+import 'package:baytna_customer/core/network/replay.dart';
 import 'package:baytna_customer/core/network/token_refresher.dart';
 import 'package:baytna_customer/core/storage/token_storage.dart';
 import 'package:dio/dio.dart';
@@ -41,6 +42,7 @@ class RefreshInterceptor extends Interceptor {
       }
       // AuthInterceptor re-attaches the (now current) token on replay.
       options.extra[_replayed] = true;
+      replayableBody(options);
       handler.resolve(await _dio.fetch<dynamic>(options));
     } on Failure catch (failure) {
       handler.reject(DioException(requestOptions: options, error: failure));

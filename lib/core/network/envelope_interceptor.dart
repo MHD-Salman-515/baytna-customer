@@ -8,13 +8,20 @@ import 'package:dio/dio.dart';
 /// On success `response.data` is replaced by the inner `data`, so everything
 /// downstream (ApiClient, data sources) sees the bare payload. Failures are
 /// parsed by [ApiError.tryParse] inside `ErrorMapper`.
+///
+/// Paginated endpoints (e.g. GET /cities) send `meta` NEXT TO `data`:
+/// `{ success, data: [...], meta: { page, limit, total, totalPages } }`.
+/// It is kept in `response.extra[metaKey]` so `ApiClient.getPage` can read it.
 class EnvelopeInterceptor extends Interceptor {
+  static const metaKey = 'envelope.meta';
+
   @override
   void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
     final body = response.data;
     if (body is Map<String, dynamic> && body['success'] is bool) {
       if (body['success'] == true) {
         response.data = body['data'];
+        if (body['meta'] != null) response.extra[metaKey] = body['meta'];
         return handler.next(response);
       }
       // A 2xx carrying success:false — treat it like the error it describes.

@@ -9,6 +9,7 @@ import 'package:baytna_customer/features/auth/presentation/screens/otp_screen.da
 import 'package:baytna_customer/features/auth/presentation/screens/phone_entry_screen.dart';
 import 'package:baytna_customer/features/auth/presentation/screens/splash_screen.dart';
 import 'package:baytna_customer/features/home/presentation/screens/home_screen.dart';
+import 'package:baytna_customer/features/workers/presentation/screens/browse_workers_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
@@ -40,9 +41,23 @@ class AppRouter {
         ),
       ),
       GoRoute(path: AppRoutes.home, builder: (_, _) => const HomeScreen()),
+      GoRoute(
+        path: AppRoutes.workers,
+        redirect: (_, state) => _requireOrHome(state, ['serviceId']),
+        builder: (_, state) => BrowseWorkersScreen(
+          serviceId: state.uri.queryParameters['serviceId']!,
+          cityId: state.uri.queryParameters['cityId'],
+        ),
+      ),
     ],
     errorBuilder: (context, state) => const _NotFoundScreen(),
   );
+
+  /// Signed-in screens missing a parameter fall back to home.
+  static String? _requireOrHome(GoRouterState state, List<String> params) {
+    final q = state.uri.queryParameters;
+    return params.every((p) => (q[p] ?? '').isNotEmpty) ? null : AppRoutes.home;
+  }
 
   /// A hand-edited or truncated URL restarts the flow instead of crashing.
   static String? _require(GoRouterState state, List<String> params) {

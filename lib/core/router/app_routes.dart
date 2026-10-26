@@ -8,11 +8,25 @@ abstract final class AppRoutes {
   static const otp = '/auth/otp';
   static const home = '/home';
 
+  /// Browse: `/workers?serviceId=…[&cityId=…]`. Signed-in only (the backend
+  /// answers 401 to an anonymous GET /workers).
+  static const workers = '/workers';
+
   static String phoneFor(String countryId) =>
       Uri(path: phone, queryParameters: {'countryId': countryId}).toString();
 
   static String otpFor({required String countryId, required String phoneE164}) => Uri(
     path: otp,
     queryParameters: {'countryId': countryId, 'phone': phoneE164},
+  ).toString();
+
+  static String workersFor(String serviceId, {String? cityId}) => Uri(
+    path: workers,
+    queryParameters: {'serviceId': serviceId, 'cityId': ?cityId},
+  ).toString();
+
+  static String workerFor(String workerId, {required String serviceId, required String cityId}) => Uri(
+    path: '$workers/$workerId',
+    queryParameters: {'serviceId': serviceId, 'cityId': cityId},
   ).toString();
 }

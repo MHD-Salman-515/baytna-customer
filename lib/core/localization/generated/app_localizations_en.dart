@@ -152,4 +152,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String devOtpUnavailable(String reason) {
     return 'Couldn\'t fetch the code: $reason';
   }
+
+  @override
+  String get browseTitle => 'Choose a worker';
+
+  @override
+  String get browseCity => 'City';
+
+  @override
+  String get browseSortRating => 'Top rated';
+
+  @override
+  String get browseSortPriceAsc => 'Lowest price';
+
+  @override
+  String get browseSortPriceDesc => 'Highest price';
+
+  @override
+  String browseEmpty(String city) {
+    return 'No workers are available for this service in $city right now.';
+  }
+
+  @override
+  String get browseEmptyHint => 'Try another city, or check back later.';
+
+  @override
+  String get browseNoCities => 'No cities are available in your country yet.';
+
+  @override
+  String get workerUnnamed => 'Home-services worker';
+
+  @override
+  String get workerNew => 'New on Baytna';
+
+  @override
+  String priceHourly(String price) {
+    return '$price / hour';
+  }
+
+  @override
+  String priceFixed(String price) {
+    return '$price · fixed price';
+  }
+
+  @override
+  String priceBySize(String price) {
+    return 'From $price';
+  }
 }

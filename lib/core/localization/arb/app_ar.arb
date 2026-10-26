@@ -54,5 +54,23 @@
 
   "devFillOtp": "تعبئة الرمز تلقائياً (وضع التطوير)",
   "devOtpUnavailable": "تعذّر جلب الرمز: {reason}",
-  "@devOtpUnavailable": { "placeholders": { "reason": { "type": "String" } } }
+  "@devOtpUnavailable": { "placeholders": { "reason": { "type": "String" } } },
+
+  "browseTitle": "اختر عاملة",
+  "browseCity": "المدينة",
+  "browseSortRating": "الأعلى تقييماً",
+  "browseSortPriceAsc": "الأقل سعراً",
+  "browseSortPriceDesc": "الأعلى سعراً",
+  "browseEmpty": "لا توجد عاملات متاحات لهذه الخدمة في {city} الآن.",
+  "@browseEmpty": { "placeholders": { "city": { "type": "String" } } },
+  "browseEmptyHint": "جرّب مدينة أخرى، أو عد لاحقاً.",
+  "browseNoCities": "لا توجد مدن متاحة في بلدك بعد.",
+  "workerUnnamed": "عاملة منزلية",
+  "workerNew": "جديدة على بيتنا",
+  "priceHourly": "{price} / ساعة",
+  "@priceHourly": { "placeholders": { "price": { "type": "String" } } },
+  "priceFixed": "{price} · سعر ثابت",
+  "@priceFixed": { "placeholders": { "price": { "type": "String" } } },
+  "priceBySize": "يبدأ من {price}",
+  "@priceBySize": { "placeholders": { "price": { "type": "String" } } }
 }

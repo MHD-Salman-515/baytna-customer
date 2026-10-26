@@ -1,5 +1,6 @@
 import 'package:baytna_customer/core/di/injection.dart';
 import 'package:baytna_customer/core/localization/l10n.dart';
+import 'package:baytna_customer/core/router/app_routes.dart';
 import 'package:baytna_customer/core/widgets/directional_icon.dart';
 import 'package:baytna_customer/core/widgets/failure_view.dart';
 import 'package:baytna_customer/core/widgets/ltr.dart';
@@ -9,6 +10,7 @@ import 'package:baytna_customer/features/services/presentation/bloc/services_blo
 import 'package:baytna_customer/features/services/presentation/widgets/service_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 /// Signed-in entry point: the service catalog. Choosing a service starts the
 /// browse-workers flow.
@@ -96,7 +98,10 @@ class _ServiceList extends StatelessWidget {
           child: ListView.separated(
             itemCount: services.length,
             separatorBuilder: (_, _) => const SizedBox(height: 12),
-            itemBuilder: (context, i) => ServiceCard(service: services[i]),
+            itemBuilder: (context, i) => ServiceCard(
+              service: services[i],
+              onTap: () => context.push(AppRoutes.workersFor(services[i].id)),
+            ),
           ),
         ),
       },

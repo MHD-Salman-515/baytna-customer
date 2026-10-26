@@ -146,4 +146,51 @@ class AppLocalizationsAr extends AppLocalizations {
   String devOtpUnavailable(String reason) {
     return 'تعذّر جلب الرمز: $reason';
   }
+
+  @override
+  String get browseTitle => 'اختر عاملة';
+
+  @override
+  String get browseCity => 'المدينة';
+
+  @override
+  String get browseSortRating => 'الأعلى تقييماً';
+
+  @override
+  String get browseSortPriceAsc => 'الأقل سعراً';
+
+  @override
+  String get browseSortPriceDesc => 'الأعلى سعراً';
+
+  @override
+  String browseEmpty(String city) {
+    return 'لا توجد عاملات متاحات لهذه الخدمة في $city الآن.';
+  }
+
+  @override
+  String get browseEmptyHint => 'جرّب مدينة أخرى، أو عد لاحقاً.';
+
+  @override
+  String get browseNoCities => 'لا توجد مدن متاحة في بلدك بعد.';
+
+  @override
+  String get workerUnnamed => 'عاملة منزلية';
+
+  @override
+  String get workerNew => 'جديدة على بيتنا';
+
+  @override
+  String priceHourly(String price) {
+    return '$price / ساعة';
+  }
+
+  @override
+  String priceFixed(String price) {
+    return '$price · سعر ثابت';
+  }
+
+  @override
+  String priceBySize(String price) {
+    return 'يبدأ من $price';
+  }
 }

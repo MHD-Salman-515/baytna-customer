@@ -45,6 +45,8 @@ import 'package:baytna_customer/features/cities/data/datasources/city_remote_dat
     as _i657;
 import 'package:baytna_customer/features/cities/data/repositories/city_repository_impl.dart'
     as _i948;
+import 'package:baytna_customer/features/cities/domain/city_selection.dart'
+    as _i872;
 import 'package:baytna_customer/features/cities/domain/repositories/city_repository.dart'
     as _i501;
 import 'package:baytna_customer/features/countries/data/datasources/country_remote_data_source.dart'
@@ -61,6 +63,14 @@ import 'package:baytna_customer/features/services/domain/repositories/service_re
     as _i798;
 import 'package:baytna_customer/features/services/presentation/bloc/services_bloc.dart'
     as _i278;
+import 'package:baytna_customer/features/workers/data/datasources/worker_remote_data_source.dart'
+    as _i496;
+import 'package:baytna_customer/features/workers/data/repositories/worker_repository_impl.dart'
+    as _i362;
+import 'package:baytna_customer/features/workers/domain/repositories/worker_repository.dart'
+    as _i607;
+import 'package:baytna_customer/features/workers/presentation/bloc/browse/browse_workers_bloc.dart'
+    as _i197;
 import 'package:dio/dio.dart' as _i361;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
@@ -87,6 +97,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => storageModule.secureStorage,
     );
+    gh.lazySingleton<_i872.CitySelection>(() => _i872.CitySelection());
     gh.lazySingleton<_i30.LocaleCubit>(
       () => _i30.LocaleCubit(gh<_i558.FlutterSecureStorage>()),
     );
@@ -132,8 +143,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i902.ServiceRemoteDataSource>(
       () => _i902.ServiceRemoteDataSource(gh<_i36.ApiClient>()),
     );
+    gh.lazySingleton<_i496.WorkerRemoteDataSource>(
+      () => _i496.WorkerRemoteDataSource(gh<_i36.ApiClient>()),
+    );
     gh.lazySingleton<_i830.CountryRepository>(
       () => _i1054.CountryRepositoryImpl(gh<_i1003.CountryRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i607.WorkerRepository>(
+      () => _i362.WorkerRepositoryImpl(gh<_i496.WorkerRemoteDataSource>()),
     );
     gh.lazySingleton<_i501.CityRepository>(
       () => _i948.CityRepositoryImpl(gh<_i657.CityRemoteDataSource>()),
@@ -149,6 +166,13 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i234.AuthRemoteDataSource>(),
         gh<_i784.AuthLocalDataSource>(),
         gh<_i372.TokenStorage>(),
+      ),
+    );
+    gh.factory<_i197.BrowseWorkersBloc>(
+      () => _i197.BrowseWorkersBloc(
+        gh<_i607.WorkerRepository>(),
+        gh<_i501.CityRepository>(),
+        gh<_i872.CitySelection>(),
       ),
     );
     gh.factoryParam<_i866.PhoneBloc, String, dynamic>(

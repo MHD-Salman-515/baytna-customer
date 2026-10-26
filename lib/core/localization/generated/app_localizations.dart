@@ -343,6 +343,84 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تعذّر جلب الرمز: {reason}'**
   String devOtpUnavailable(String reason);
+
+  /// No description provided for @browseTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر عاملة'**
+  String get browseTitle;
+
+  /// No description provided for @browseCity.
+  ///
+  /// In ar, this message translates to:
+  /// **'المدينة'**
+  String get browseCity;
+
+  /// No description provided for @browseSortRating.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأعلى تقييماً'**
+  String get browseSortRating;
+
+  /// No description provided for @browseSortPriceAsc.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأقل سعراً'**
+  String get browseSortPriceAsc;
+
+  /// No description provided for @browseSortPriceDesc.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأعلى سعراً'**
+  String get browseSortPriceDesc;
+
+  /// No description provided for @browseEmpty.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد عاملات متاحات لهذه الخدمة في {city} الآن.'**
+  String browseEmpty(String city);
+
+  /// No description provided for @browseEmptyHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'جرّب مدينة أخرى، أو عد لاحقاً.'**
+  String get browseEmptyHint;
+
+  /// No description provided for @browseNoCities.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد مدن متاحة في بلدك بعد.'**
+  String get browseNoCities;
+
+  /// No description provided for @workerUnnamed.
+  ///
+  /// In ar, this message translates to:
+  /// **'عاملة منزلية'**
+  String get workerUnnamed;
+
+  /// No description provided for @workerNew.
+  ///
+  /// In ar, this message translates to:
+  /// **'جديدة على بيتنا'**
+  String get workerNew;
+
+  /// No description provided for @priceHourly.
+  ///
+  /// In ar, this message translates to:
+  /// **'{price} / ساعة'**
+  String priceHourly(String price);
+
+  /// No description provided for @priceFixed.
+  ///
+  /// In ar, this message translates to:
+  /// **'{price} · سعر ثابت'**
+  String priceFixed(String price);
+
+  /// No description provided for @priceBySize.
+  ///
+  /// In ar, this message translates to:
+  /// **'يبدأ من {price}'**
+  String priceBySize(String price);
 }
 
 class _AppLocalizationsDelegate

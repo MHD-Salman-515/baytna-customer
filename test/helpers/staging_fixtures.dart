@@ -39,4 +39,56 @@ abstract final class StagingFixtures {
     'isActive': true,
     'id': damascusId,
   };
+
+  static const workerServiceId = '6adf3e0f9915d0e047e12441';
+
+  /// `data` of POST /bookings (201), status PENDING_WORKER.
+  static const booking = <String, dynamic>{
+    'id': '6adf3eee9915d0e047e124b8',
+    'bookingNumber': 'BK-4S2DC6',
+    'customerId': '6adf37349915d0e047e12234',
+    'workerProfileId': workerId,
+    'serviceId': cleaningId,
+    'workerServiceId': workerServiceId,
+    'countryId': '6adbb9bbd141d68e87375528',
+    'cityId': damascusId,
+    'type': 'SCHEDULED',
+    'status': 'PENDING_WORKER',
+    'scheduledFor': '2026-11-05T07:00:00.000Z',
+    'estimatedDurationMinutes': 120,
+    'address': {
+      'point': {
+        'type': 'Point',
+        'coordinates': [36.2765, 33.5138],
+      },
+      'text': 'المزة، شارع 12',
+      'landmark': 'probe: بجانب الجامع الأزرق',
+      'floor': '3',
+      'notes': 'probe booking',
+    },
+    'pricing': {'pricingType': 'HOURLY', 'hours': 2, 'roomCount': null, 'basePrice': 12000, 'currency': 'SYP'},
+    'finalPricing': null,
+    'responseDeadline': '2026-10-26T23:52:13.967Z',
+    'acceptedAt': null,
+    'startedAt': null,
+    'completedAt': null,
+    'cancelledAt': null,
+    'cancellation': null,
+    'rejectionReason': null,
+    'customerNote': null,
+    'workerPhone': null,
+  };
+
+  /// The same booking after a late customer cancel (fee charged).
+  static final cancelledLate = <String, dynamic>{
+    ...booking,
+    'status': 'CANCELLED',
+    'cancelledAt': '2026-10-26T11:53:08.514Z',
+    'cancellation': {
+      'byUserId': '6adf37349915d0e047e12234',
+      'byRole': 'CUSTOMER',
+      'reason': 'probe: late cancel fee check',
+      'feeAmount': 2400,
+    },
+  };
 }

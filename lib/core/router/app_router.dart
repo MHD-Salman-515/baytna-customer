@@ -8,6 +8,7 @@ import 'package:baytna_customer/features/auth/presentation/screens/country_selec
 import 'package:baytna_customer/features/auth/presentation/screens/otp_screen.dart';
 import 'package:baytna_customer/features/auth/presentation/screens/phone_entry_screen.dart';
 import 'package:baytna_customer/features/auth/presentation/screens/splash_screen.dart';
+import 'package:baytna_customer/features/bookings/presentation/screens/booking_flow_screen.dart';
 import 'package:baytna_customer/features/home/presentation/screens/home_screen.dart';
 import 'package:baytna_customer/features/workers/presentation/screens/browse_workers_screen.dart';
 import 'package:baytna_customer/features/workers/presentation/screens/worker_detail_screen.dart';
@@ -58,6 +59,23 @@ class AppRouter {
               serviceId: state.uri.queryParameters['serviceId']!,
               cityId: state.uri.queryParameters['cityId']!,
             ),
+            routes: [
+              GoRoute(
+                path: 'book',
+                redirect: (_, state) => _requireOrHome(state, ['serviceId', 'cityId']),
+                builder: (_, state) {
+                  final q = state.uri.queryParameters;
+                  return BookingFlowScreen(
+                    workerId: state.pathParameters['workerId']!,
+                    serviceId: q['serviceId']!,
+                    cityId: q['cityId']!,
+                    hours: num.tryParse(q['hours'] ?? ''),
+                    rooms: int.tryParse(q['rooms'] ?? ''),
+                    durationMinutes: int.tryParse(q['minutes'] ?? ''),
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'country_model.g.dart';
 
 /// Element of GET /countries `data` (shape verified against staging).
+/// `commissionRate`, wallet and matching policies are deliberately not mapped.
 @JsonSerializable(createToJson: false)
 class CountryModel {
   const CountryModel({
@@ -14,6 +15,7 @@ class CountryModel {
     required this.phonePrefix,
     required this.currencyCode,
     required this.timezone,
+    this.bookingPolicy = BookingPolicy.defaults,
   });
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => _$CountryModelFromJson(json);
@@ -25,6 +27,8 @@ class CountryModel {
   final String phonePrefix;
   final String currencyCode;
   final String timezone;
+  @JsonKey(fromJson: BookingPolicy.fromJson)
+  final BookingPolicy bookingPolicy;
 
   Country toEntity() => Country(
     id: id,
@@ -33,5 +37,6 @@ class CountryModel {
     phonePrefix: phonePrefix,
     currencyCode: currencyCode,
     timezone: timezone,
+    bookingPolicy: bookingPolicy,
   );
 }

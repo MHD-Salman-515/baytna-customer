@@ -547,6 +547,264 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'هذا السعر من بيتنا، ويُثبَّت عند تأكيد الحجز.'**
   String get quoteFrozenNote;
+
+  /// No description provided for @quoteContinue.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر الموعد'**
+  String get quoteContinue;
+
+  /// No description provided for @bookingTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'حجز موعد'**
+  String get bookingTitle;
+
+  /// No description provided for @bookingStepTime.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموعد'**
+  String get bookingStepTime;
+
+  /// No description provided for @bookingStepAddress.
+  ///
+  /// In ar, this message translates to:
+  /// **'العنوان'**
+  String get bookingStepAddress;
+
+  /// No description provided for @bookingStepReview.
+  ///
+  /// In ar, this message translates to:
+  /// **'المراجعة'**
+  String get bookingStepReview;
+
+  /// No description provided for @bookingNext.
+  ///
+  /// In ar, this message translates to:
+  /// **'التالي'**
+  String get bookingNext;
+
+  /// No description provided for @bookingOtherDay.
+  ///
+  /// In ar, this message translates to:
+  /// **'يوم آخر'**
+  String get bookingOtherDay;
+
+  /// No description provided for @dayToday.
+  ///
+  /// In ar, this message translates to:
+  /// **'اليوم'**
+  String get dayToday;
+
+  /// No description provided for @dayTomorrow.
+  ///
+  /// In ar, this message translates to:
+  /// **'غداً'**
+  String get dayTomorrow;
+
+  /// No description provided for @bookingTimesNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأوقات بتوقيت {city}، وكلها أوقات تكون فيها متاحة فعلاً.'**
+  String bookingTimesNote(String city);
+
+  /// No description provided for @bookingNoTimes.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد أوقات متاحة لها في هذا اليوم. جرّب يوماً آخر.'**
+  String get bookingNoTimes;
+
+  /// No description provided for @bookingTakesAbout.
+  ///
+  /// In ar, this message translates to:
+  /// **'تستغرق نحو {duration}'**
+  String bookingTakesAbout(String duration);
+
+  /// No description provided for @addressMapTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'أين البيت؟'**
+  String get addressMapTitle;
+
+  /// No description provided for @addressMapHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'حرّك الخريطة حتى يقع الدبوس على البيت، أو المس المكان مباشرة.'**
+  String get addressMapHint;
+
+  /// No description provided for @addressLocateMe.
+  ///
+  /// In ar, this message translates to:
+  /// **'موقعي الحالي'**
+  String get addressLocateMe;
+
+  /// No description provided for @addressPinFromGps.
+  ///
+  /// In ar, this message translates to:
+  /// **'بدأنا من موقعك الحالي. عدّل الدبوس إن لزم.'**
+  String get addressPinFromGps;
+
+  /// No description provided for @addressPinFromCity.
+  ///
+  /// In ar, this message translates to:
+  /// **'بدأنا من وسط {city}. حرّك الخريطة إلى البيت.'**
+  String addressPinFromCity(String city);
+
+  /// No description provided for @addressPinGpsTooFar.
+  ///
+  /// In ar, this message translates to:
+  /// **'موقعك الحالي خارج {city}، فبدأنا من وسط المدينة.'**
+  String addressPinGpsTooFar(String city);
+
+  /// No description provided for @addressLandmark.
+  ///
+  /// In ar, this message translates to:
+  /// **'أقرب معلم معروف'**
+  String get addressLandmark;
+
+  /// No description provided for @addressLandmarkHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'مثلاً: مقابل صيدلية الشفاء، البناء ذو الباب الأخضر'**
+  String get addressLandmarkHint;
+
+  /// No description provided for @addressLandmarkHelper.
+  ///
+  /// In ar, this message translates to:
+  /// **'هكذا ستصل العاملة إلى بابك، فاكتبه كما تصفه لضيف.'**
+  String get addressLandmarkHelper;
+
+  /// No description provided for @addressLandmarkRequired.
+  ///
+  /// In ar, this message translates to:
+  /// **'اكتب معلماً قريباً لتصل إليك العاملة.'**
+  String get addressLandmarkRequired;
+
+  /// No description provided for @addressText.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحي والشارع'**
+  String get addressText;
+
+  /// No description provided for @addressTextHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'مثلاً: المزة، شارع الجلاء'**
+  String get addressTextHint;
+
+  /// No description provided for @addressTextRequired.
+  ///
+  /// In ar, this message translates to:
+  /// **'اكتب الحي والشارع.'**
+  String get addressTextRequired;
+
+  /// No description provided for @addressFloor.
+  ///
+  /// In ar, this message translates to:
+  /// **'الطابق (اختياري)'**
+  String get addressFloor;
+
+  /// No description provided for @addressNotes.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظات للعاملة (اختياري)'**
+  String get addressNotes;
+
+  /// No description provided for @addressNotesHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'مثلاً: اطرقي الجرس مرتين'**
+  String get addressNotesHint;
+
+  /// No description provided for @reviewService.
+  ///
+  /// In ar, this message translates to:
+  /// **'الخدمة'**
+  String get reviewService;
+
+  /// No description provided for @reviewWhen.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموعد'**
+  String get reviewWhen;
+
+  /// No description provided for @reviewFloor.
+  ///
+  /// In ar, this message translates to:
+  /// **'الطابق {floor}'**
+  String reviewFloor(String floor);
+
+  /// No description provided for @reviewWhatNext.
+  ///
+  /// In ar, this message translates to:
+  /// **'بعد التأكيد يُرسل طلبك إلى العاملة لتقبله. يظهر رقم هاتفها في حجزك عندما تقبل.'**
+  String get reviewWhatNext;
+
+  /// No description provided for @reviewConfirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'تأكيد الحجز'**
+  String get reviewConfirm;
+
+  /// No description provided for @bookingSent.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم إرسال طلب الحجز'**
+  String get bookingSent;
+
+  /// No description provided for @bookingNumber.
+  ///
+  /// In ar, this message translates to:
+  /// **'رقم الحجز: {number}'**
+  String bookingNumber(String number);
+
+  /// No description provided for @bookingSentNext.
+  ///
+  /// In ar, this message translates to:
+  /// **'سنُعلمك عندما تقبل العاملة طلبك.'**
+  String get bookingSentNext;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In ar, this message translates to:
+  /// **'العودة إلى الرئيسية'**
+  String get backToHome;
+
+  /// No description provided for @bookingErrorSlotTaken.
+  ///
+  /// In ar, this message translates to:
+  /// **'حُجز هذا الوقت للتو. اختر وقتاً آخر من القائمة المحدّثة.'**
+  String get bookingErrorSlotTaken;
+
+  /// No description provided for @bookingErrorBeyondHorizon.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يمكن الحجز لأكثر من {days} يوماً مقدماً.'**
+  String bookingErrorBeyondHorizon(int days);
+
+  /// No description provided for @bookingErrorOutsideHours.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا الوقت خارج ساعات عملها. اختر وقتاً من القائمة.'**
+  String get bookingErrorOutsideHours;
+
+  /// No description provided for @bookingErrorInPast.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا الوقت مضى. اختر وقتاً لاحقاً.'**
+  String get bookingErrorInPast;
+
+  /// No description provided for @bookingErrorCityNotServed.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذه العاملة لا تعمل في هذه المدينة.'**
+  String get bookingErrorCityNotServed;
+
+  /// No description provided for @bookingErrorWorkerUnavailable.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم تعد هذه العاملة متاحة للحجز. اختر عاملة أخرى.'**
+  String get bookingErrorWorkerUnavailable;
 }
 
 class _AppLocalizationsDelegate

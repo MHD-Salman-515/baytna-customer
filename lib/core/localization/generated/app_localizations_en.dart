@@ -297,4 +297,157 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get quoteFrozenNote =>
       'This price comes from Baytna and is locked in when you confirm.';
+
+  @override
+  String get quoteContinue => 'Choose a time';
+
+  @override
+  String get bookingTitle => 'Book a visit';
+
+  @override
+  String get bookingStepTime => 'Time';
+
+  @override
+  String get bookingStepAddress => 'Address';
+
+  @override
+  String get bookingStepReview => 'Review';
+
+  @override
+  String get bookingNext => 'Next';
+
+  @override
+  String get bookingOtherDay => 'Another day';
+
+  @override
+  String get dayToday => 'Today';
+
+  @override
+  String get dayTomorrow => 'Tomorrow';
+
+  @override
+  String bookingTimesNote(String city) {
+    return 'Times are $city time, and she is actually free at all of them.';
+  }
+
+  @override
+  String get bookingNoTimes =>
+      'She has no free time that day. Try another day.';
+
+  @override
+  String bookingTakesAbout(String duration) {
+    return 'Takes about $duration';
+  }
+
+  @override
+  String get addressMapTitle => 'Where is the home?';
+
+  @override
+  String get addressMapHint =>
+      'Move the map until the pin sits on the home, or tap the spot.';
+
+  @override
+  String get addressLocateMe => 'My location';
+
+  @override
+  String get addressPinFromGps =>
+      'We started from your current location. Adjust the pin if needed.';
+
+  @override
+  String addressPinFromCity(String city) {
+    return 'We started from central $city. Move the map to the home.';
+  }
+
+  @override
+  String addressPinGpsTooFar(String city) {
+    return 'You\'re currently outside $city, so we started from the city centre.';
+  }
+
+  @override
+  String get addressLandmark => 'Nearest landmark';
+
+  @override
+  String get addressLandmarkHint =>
+      'e.g. Opposite Al-Shifa pharmacy, the building with the green door';
+
+  @override
+  String get addressLandmarkHelper =>
+      'This is how she\'ll find your door, so describe it as you would to a guest.';
+
+  @override
+  String get addressLandmarkRequired =>
+      'Add a nearby landmark so she can find you.';
+
+  @override
+  String get addressText => 'Area and street';
+
+  @override
+  String get addressTextHint => 'e.g. Mezzeh, Al-Jalaa street';
+
+  @override
+  String get addressTextRequired => 'Add the area and street.';
+
+  @override
+  String get addressFloor => 'Floor (optional)';
+
+  @override
+  String get addressNotes => 'Notes for her (optional)';
+
+  @override
+  String get addressNotesHint => 'e.g. Ring the bell twice';
+
+  @override
+  String get reviewService => 'Service';
+
+  @override
+  String get reviewWhen => 'When';
+
+  @override
+  String reviewFloor(String floor) {
+    return 'Floor $floor';
+  }
+
+  @override
+  String get reviewWhatNext =>
+      'After you confirm, she gets your request to accept. Her phone number appears in your booking once she accepts.';
+
+  @override
+  String get reviewConfirm => 'Confirm booking';
+
+  @override
+  String get bookingSent => 'Booking request sent';
+
+  @override
+  String bookingNumber(String number) {
+    return 'Booking number: $number';
+  }
+
+  @override
+  String get bookingSentNext => 'We\'ll let you know when she accepts.';
+
+  @override
+  String get backToHome => 'Back to home';
+
+  @override
+  String get bookingErrorSlotTaken =>
+      'That time was just taken. Pick another from the updated list.';
+
+  @override
+  String bookingErrorBeyondHorizon(int days) {
+    return 'You can book at most $days days ahead.';
+  }
+
+  @override
+  String get bookingErrorOutsideHours =>
+      'That\'s outside her working hours. Pick a time from the list.';
+
+  @override
+  String get bookingErrorInPast => 'That time has passed. Pick a later one.';
+
+  @override
+  String get bookingErrorCityNotServed => 'She doesn\'t work in this city.';
+
+  @override
+  String get bookingErrorWorkerUnavailable =>
+      'She\'s no longer available to book. Please choose someone else.';
 }

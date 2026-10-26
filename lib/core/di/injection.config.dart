@@ -13,6 +13,7 @@
 import 'package:baytna_customer/core/config/app_config.dart' as _i1002;
 import 'package:baytna_customer/core/di/app_module.dart' as _i447;
 import 'package:baytna_customer/core/localization/locale_cubit.dart' as _i30;
+import 'package:baytna_customer/core/location/location_service.dart' as _i937;
 import 'package:baytna_customer/core/network/api_client.dart' as _i36;
 import 'package:baytna_customer/core/network/network_module.dart' as _i979;
 import 'package:baytna_customer/core/network/server_status.dart' as _i698;
@@ -41,6 +42,14 @@ import 'package:baytna_customer/features/auth/presentation/bloc/otp/otp_bloc.dar
     as _i451;
 import 'package:baytna_customer/features/auth/presentation/bloc/phone/phone_bloc.dart'
     as _i866;
+import 'package:baytna_customer/features/bookings/data/booking_remote_data_source.dart'
+    as _i795;
+import 'package:baytna_customer/features/bookings/data/booking_repository_impl.dart'
+    as _i1062;
+import 'package:baytna_customer/features/bookings/domain/booking_repository.dart'
+    as _i717;
+import 'package:baytna_customer/features/bookings/presentation/bloc/flow/booking_flow_bloc.dart'
+    as _i128;
 import 'package:baytna_customer/features/cities/data/datasources/city_remote_data_source.dart'
     as _i657;
 import 'package:baytna_customer/features/cities/data/repositories/city_repository_impl.dart'
@@ -108,6 +117,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => storageModule.secureStorage,
     );
     gh.lazySingleton<_i872.CitySelection>(() => _i872.CitySelection());
+    gh.lazySingleton<_i937.LocationService>(
+      () => _i937.GeolocatorLocationService(),
+    );
     gh.lazySingleton<_i30.LocaleCubit>(
       () => _i30.LocaleCubit(gh<_i558.FlutterSecureStorage>()),
     );
@@ -144,6 +156,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i234.AuthRemoteDataSource>(
       () => _i234.AuthRemoteDataSource(gh<_i36.ApiClient>()),
     );
+    gh.lazySingleton<_i795.BookingRemoteDataSource>(
+      () => _i795.BookingRemoteDataSource(gh<_i36.ApiClient>()),
+    );
     gh.lazySingleton<_i657.CityRemoteDataSource>(
       () => _i657.CityRemoteDataSource(gh<_i36.ApiClient>()),
     );
@@ -164,6 +179,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i607.WorkerRepository>(
       () => _i362.WorkerRepositoryImpl(gh<_i496.WorkerRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i717.BookingRepository>(
+      () => _i1062.BookingRepositoryImpl(gh<_i795.BookingRemoteDataSource>()),
     );
     gh.lazySingleton<_i501.CityRepository>(
       () => _i948.CityRepositoryImpl(gh<_i657.CityRemoteDataSource>()),
@@ -220,6 +238,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i244.AuthRepository>(),
         gh<_i30.LocaleCubit>(),
         gh<_i809.SessionEvents>(),
+      ),
+    );
+    gh.factory<_i128.BookingFlowBloc>(
+      () => _i128.BookingFlowBloc(
+        gh<_i607.WorkerRepository>(),
+        gh<_i830.CountryRepository>(),
+        gh<_i501.CityRepository>(),
+        gh<_i502.PricingRepository>(),
+        gh<_i717.BookingRepository>(),
+        gh<_i937.LocationService>(),
+        gh<_i759.Clock>(),
       ),
     );
     gh.lazySingleton<_i409.AppRouter>(

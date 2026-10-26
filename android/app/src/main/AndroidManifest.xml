@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Required in release builds too (debug/profile get it from their own manifests). -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Optional: the address map opens at her position when she allows it. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
-        android:label="baytna_customer"
+        android:label="بيتنا"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

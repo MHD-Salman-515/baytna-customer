@@ -294,4 +294,155 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quoteFrozenNote => 'هذا السعر من بيتنا، ويُثبَّت عند تأكيد الحجز.';
+
+  @override
+  String get quoteContinue => 'اختر الموعد';
+
+  @override
+  String get bookingTitle => 'حجز موعد';
+
+  @override
+  String get bookingStepTime => 'الموعد';
+
+  @override
+  String get bookingStepAddress => 'العنوان';
+
+  @override
+  String get bookingStepReview => 'المراجعة';
+
+  @override
+  String get bookingNext => 'التالي';
+
+  @override
+  String get bookingOtherDay => 'يوم آخر';
+
+  @override
+  String get dayToday => 'اليوم';
+
+  @override
+  String get dayTomorrow => 'غداً';
+
+  @override
+  String bookingTimesNote(String city) {
+    return 'الأوقات بتوقيت $city، وكلها أوقات تكون فيها متاحة فعلاً.';
+  }
+
+  @override
+  String get bookingNoTimes =>
+      'لا توجد أوقات متاحة لها في هذا اليوم. جرّب يوماً آخر.';
+
+  @override
+  String bookingTakesAbout(String duration) {
+    return 'تستغرق نحو $duration';
+  }
+
+  @override
+  String get addressMapTitle => 'أين البيت؟';
+
+  @override
+  String get addressMapHint =>
+      'حرّك الخريطة حتى يقع الدبوس على البيت، أو المس المكان مباشرة.';
+
+  @override
+  String get addressLocateMe => 'موقعي الحالي';
+
+  @override
+  String get addressPinFromGps => 'بدأنا من موقعك الحالي. عدّل الدبوس إن لزم.';
+
+  @override
+  String addressPinFromCity(String city) {
+    return 'بدأنا من وسط $city. حرّك الخريطة إلى البيت.';
+  }
+
+  @override
+  String addressPinGpsTooFar(String city) {
+    return 'موقعك الحالي خارج $city، فبدأنا من وسط المدينة.';
+  }
+
+  @override
+  String get addressLandmark => 'أقرب معلم معروف';
+
+  @override
+  String get addressLandmarkHint =>
+      'مثلاً: مقابل صيدلية الشفاء، البناء ذو الباب الأخضر';
+
+  @override
+  String get addressLandmarkHelper =>
+      'هكذا ستصل العاملة إلى بابك، فاكتبه كما تصفه لضيف.';
+
+  @override
+  String get addressLandmarkRequired => 'اكتب معلماً قريباً لتصل إليك العاملة.';
+
+  @override
+  String get addressText => 'الحي والشارع';
+
+  @override
+  String get addressTextHint => 'مثلاً: المزة، شارع الجلاء';
+
+  @override
+  String get addressTextRequired => 'اكتب الحي والشارع.';
+
+  @override
+  String get addressFloor => 'الطابق (اختياري)';
+
+  @override
+  String get addressNotes => 'ملاحظات للعاملة (اختياري)';
+
+  @override
+  String get addressNotesHint => 'مثلاً: اطرقي الجرس مرتين';
+
+  @override
+  String get reviewService => 'الخدمة';
+
+  @override
+  String get reviewWhen => 'الموعد';
+
+  @override
+  String reviewFloor(String floor) {
+    return 'الطابق $floor';
+  }
+
+  @override
+  String get reviewWhatNext =>
+      'بعد التأكيد يُرسل طلبك إلى العاملة لتقبله. يظهر رقم هاتفها في حجزك عندما تقبل.';
+
+  @override
+  String get reviewConfirm => 'تأكيد الحجز';
+
+  @override
+  String get bookingSent => 'تم إرسال طلب الحجز';
+
+  @override
+  String bookingNumber(String number) {
+    return 'رقم الحجز: $number';
+  }
+
+  @override
+  String get bookingSentNext => 'سنُعلمك عندما تقبل العاملة طلبك.';
+
+  @override
+  String get backToHome => 'العودة إلى الرئيسية';
+
+  @override
+  String get bookingErrorSlotTaken =>
+      'حُجز هذا الوقت للتو. اختر وقتاً آخر من القائمة المحدّثة.';
+
+  @override
+  String bookingErrorBeyondHorizon(int days) {
+    return 'لا يمكن الحجز لأكثر من $days يوماً مقدماً.';
+  }
+
+  @override
+  String get bookingErrorOutsideHours =>
+      'هذا الوقت خارج ساعات عملها. اختر وقتاً من القائمة.';
+
+  @override
+  String get bookingErrorInPast => 'هذا الوقت مضى. اختر وقتاً لاحقاً.';
+
+  @override
+  String get bookingErrorCityNotServed => 'هذه العاملة لا تعمل في هذه المدينة.';
+
+  @override
+  String get bookingErrorWorkerUnavailable =>
+      'لم تعد هذه العاملة متاحة للحجز. اختر عاملة أخرى.';
 }

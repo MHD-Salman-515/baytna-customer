@@ -29,4 +29,24 @@ abstract final class AppRoutes {
     path: '$workers/$workerId',
     queryParameters: {'serviceId': serviceId, 'cityId': cityId},
   ).toString();
+
+  /// The booking flow for one offering; carries the size chosen on the
+  /// price preview so the flow books exactly what was quoted.
+  static String bookFor(
+    String workerId, {
+    required String serviceId,
+    required String cityId,
+    num? hours,
+    int? rooms,
+    int? durationMinutes,
+  }) => Uri(
+    path: '$workers/$workerId/book',
+    queryParameters: {
+      'serviceId': serviceId,
+      'cityId': cityId,
+      'hours': ?hours?.toString(),
+      'rooms': ?rooms?.toString(),
+      'minutes': ?durationMinutes?.toString(),
+    },
+  ).toString();
 }

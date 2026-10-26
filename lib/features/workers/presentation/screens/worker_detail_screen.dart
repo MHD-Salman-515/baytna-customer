@@ -1,8 +1,10 @@
 import 'package:baytna_customer/core/di/injection.dart';
 import 'package:baytna_customer/core/localization/l10n.dart';
 import 'package:baytna_customer/core/localization/localized_text.dart';
+import 'package:baytna_customer/core/router/app_routes.dart';
 import 'package:baytna_customer/core/widgets/failure_view.dart';
 import 'package:baytna_customer/core/widgets/language_toggle_button.dart';
+import 'package:baytna_customer/core/widgets/primary_button.dart';
 import 'package:baytna_customer/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:baytna_customer/features/pricing/presentation/bloc/quote_bloc.dart';
 import 'package:baytna_customer/features/pricing/presentation/widgets/quote_panel.dart';
@@ -14,6 +16,7 @@ import 'package:baytna_customer/features/workers/presentation/widgets/worker_ava
 import 'package:baytna_customer/features/workers/presentation/widgets/worker_labels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 /// Her public profile and the services she offers. Shows only what the
 /// public projection contains.
@@ -171,7 +174,29 @@ class _WorkerProfileBodyState extends State<WorkerProfileBody> {
                     workerServiceId: selected.workerServiceId!,
                     pricingType: selected.pricingType,
                   )),
-                child: const QuotePanel(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const QuotePanel(),
+                    const SizedBox(height: 16),
+                    BlocBuilder<QuoteBloc, QuoteState>(
+                      builder: (context, quote) => PrimaryButton(
+                        key: const ValueKey('continue-booking'),
+                        label: l10n.quoteContinue,
+                        onPressed: quote.canContinue
+                            ? () => context.push(AppRoutes.bookFor(
+                                worker.id,
+                                serviceId: selected.serviceId,
+                                cityId: widget.cityId,
+                                hours: quote.jobSize.hours,
+                                rooms: quote.jobSize.roomCount,
+                                durationMinutes: quote.jobSize.durationMinutes,
+                              ))
+                            : null,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
             if (selected != null && !selected.isBookable) ...[

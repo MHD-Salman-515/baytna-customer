@@ -33,7 +33,6 @@ class BrowseWorkersScreen extends StatelessWidget {
           homeCityId: user?.cityId,
         )),
       child: PageScaffold(
-        appBarTitle: context.l10n.browseTitle,
         title: context.l10n.browseTitle,
         body: const _Body(),
       ),

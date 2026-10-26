@@ -1,3 +1,4 @@
+import 'package:baytna_customer/core/localization/l10n.dart';
 import 'package:baytna_customer/core/localization/localized_text.dart';
 import 'package:baytna_customer/features/workers/domain/entities/worker.dart';
 import 'package:baytna_customer/features/workers/presentation/widgets/rating_label.dart';
@@ -54,7 +55,8 @@ class WorkerCard extends StatelessWidget {
                         RatingLabel(rating: worker.rating),
                       ],
                     ),
-                    Text(cityName, style: theme.textTheme.bodySmall),
+                    // The list is filtered by city, so she serves this one.
+                    Text(context.l10n.workerServesCities(cityName), style: theme.textTheme.bodySmall),
                     if (bio.isNotEmpty) ...[
                       const SizedBox(height: 6),
                       Text(bio, maxLines: 2, overflow: TextOverflow.ellipsis),

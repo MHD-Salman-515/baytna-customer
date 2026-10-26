@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:baytna_customer/core/di/injection.dart';
 import 'package:baytna_customer/core/localization/l10n.dart';
 import 'package:baytna_customer/core/localization/localized_text.dart';
@@ -667,6 +669,16 @@ class _Done extends StatelessWidget {
           Text(l10n.bookingSentNext, textAlign: TextAlign.center),
           const SizedBox(height: 32),
           FilledButton(
+            key: const ValueKey('view-booking'),
+            // Home underneath, so "back" from the booking lands somewhere sensible.
+            onPressed: () {
+              final router = GoRouter.of(context)..go(AppRoutes.home);
+              unawaited(router.push(AppRoutes.bookingFor(booking.id)));
+            },
+            child: Text(l10n.bookingView),
+          ),
+          const SizedBox(height: 8),
+          TextButton(
             key: const ValueKey('back-home'),
             onPressed: () => context.go(AppRoutes.home),
             child: Text(l10n.backToHome),

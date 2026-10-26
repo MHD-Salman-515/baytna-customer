@@ -37,6 +37,13 @@ class HomeScreen extends StatelessWidget {
           children: [
             const Expanded(child: _ServiceList()),
             const SizedBox(height: 12),
+            OutlinedButton.icon(
+              key: const ValueKey('my-bookings'),
+              onPressed: () => context.push(AppRoutes.bookings),
+              icon: const Icon(Icons.event_note_rounded),
+              label: Text(l10n.myBookings),
+            ),
+            const SizedBox(height: 8),
             Row(
               children: [
                 Icon(

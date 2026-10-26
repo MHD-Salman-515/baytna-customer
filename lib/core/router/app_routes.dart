@@ -12,6 +12,9 @@ abstract final class AppRoutes {
   /// answers 401 to an anonymous GET /workers).
   static const workers = '/workers';
 
+  /// My bookings; `/bookings/:id` for one.
+  static const bookings = '/bookings';
+
   static String phoneFor(String countryId) =>
       Uri(path: phone, queryParameters: {'countryId': countryId}).toString();
 
@@ -49,4 +52,6 @@ abstract final class AppRoutes {
       'minutes': ?durationMinutes?.toString(),
     },
   ).toString();
+
+  static String bookingFor(String id) => '$bookings/$id';
 }

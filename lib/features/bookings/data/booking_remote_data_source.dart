@@ -28,4 +28,14 @@ class BookingRemoteDataSource {
     query: {'status': ?status?.wire, 'page': page, 'limit': pageSize},
     decodeItem: BookingModel.fromJson,
   );
+
+  Future<Booking> get(String id) =>
+      _api.get('/bookings/$id', decode: (data) => BookingModel.fromJson(asJson(data)));
+
+  /// [reason] is required and must not be empty (400 otherwise).
+  Future<Booking> cancel(String id, String reason) => _api.post(
+    '/bookings/$id/cancel',
+    body: {'reason': reason},
+    decode: (data) => BookingModel.fromJson(asJson(data)),
+  );
 }

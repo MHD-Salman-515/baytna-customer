@@ -445,4 +445,154 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get bookingErrorWorkerUnavailable =>
       'لم تعد هذه العاملة متاحة للحجز. اختر عاملة أخرى.';
+
+  @override
+  String get myBookings => 'حجوزاتي';
+
+  @override
+  String get bookingView => 'عرض الحجز';
+
+  @override
+  String get bookingsTitle => 'حجوزاتي';
+
+  @override
+  String get bookingsFilterAll => 'الكل';
+
+  @override
+  String get bookingsEmpty => 'لا توجد حجوزات هنا بعد.';
+
+  @override
+  String get bookingDetailTitle => 'تفاصيل الحجز';
+
+  @override
+  String get bookingFrozenPrice => 'السعر المثبّت';
+
+  @override
+  String get statusSearching => 'جارٍ البحث';
+
+  @override
+  String get statusPendingWorker => 'بانتظار رد العاملة';
+
+  @override
+  String get statusAccepted => 'مقبول';
+
+  @override
+  String get statusOnTheWay => 'العاملة في الطريق';
+
+  @override
+  String get statusArrived => 'وصلت العاملة';
+
+  @override
+  String get statusInProgress => 'قيد التنفيذ';
+
+  @override
+  String get statusCompleted => 'مكتمل';
+
+  @override
+  String get statusRejected => 'اعتذرت العاملة';
+
+  @override
+  String get statusCancelled => 'ملغى';
+
+  @override
+  String get statusExpired => 'انتهت مهلة الرد';
+
+  @override
+  String get statusNoWorkerFound => 'لم نجد عاملة';
+
+  @override
+  String get statusNoShow => 'لم يتم الحضور';
+
+  @override
+  String get statusUnknown => 'حالة غير معروفة';
+
+  @override
+  String get explainPending => 'أُرسل طلبك إلى العاملة وننتظر ردها.';
+
+  @override
+  String explainPendingUntil(String deadline) {
+    return 'أُرسل طلبك إلى العاملة. إن لم ترد قبل $deadline يُلغى الطلب تلقائياً.';
+  }
+
+  @override
+  String get explainAccepted => 'قبلت العاملة الحجز. رقم هاتفها ظاهر أدناه.';
+
+  @override
+  String get explainUnderway => 'الزيارة جارية.';
+
+  @override
+  String get explainCompleted => 'اكتملت الزيارة.';
+
+  @override
+  String get explainRejected =>
+      'اعتذرت العاملة عن هذا الحجز. يمكنك حجز عاملة أخرى.';
+
+  @override
+  String get explainExpired =>
+      'لم ترد العاملة في الوقت المحدد، فلم يُثبَّت الحجز.';
+
+  @override
+  String get explainCancelled => 'أُلغي هذا الحجز.';
+
+  @override
+  String get workerPhoneHidden => 'يظهر رقم هاتفها هنا عندما تقبل الحجز.';
+
+  @override
+  String get workerPhoneNotShared => 'لم تتم مشاركة رقمها لهذا الحجز.';
+
+  @override
+  String get copyPhone => 'نسخ الرقم';
+
+  @override
+  String get cancelBooking => 'إلغاء الحجز';
+
+  @override
+  String get cancelTitle => 'إلغاء الحجز؟';
+
+  @override
+  String cancelFeeFree(String until) {
+    return 'الإلغاء مجاني الآن، وحتى $until.';
+  }
+
+  @override
+  String cancelFeeLate(String fee, int hours, String percent) {
+    return 'ستُحتسب رسوم إلغاء قدرها $fee، لأن الموعد بعد أقل من $hours ساعة. (الرسوم $percent% من سعر الحجز)';
+  }
+
+  @override
+  String get cancelReasonLabel => 'سبب الإلغاء';
+
+  @override
+  String get cancelReasonPlans => 'تغيّرت خططي';
+
+  @override
+  String get cancelReasonTime => 'الموعد لم يعد مناسباً';
+
+  @override
+  String get cancelReasonElse => 'وجدت حلاً آخر';
+
+  @override
+  String get cancelReasonOther => 'سبب آخر';
+
+  @override
+  String get cancelReasonOtherHint => 'اكتب السبب';
+
+  @override
+  String get cancelConfirmFree => 'تأكيد الإلغاء';
+
+  @override
+  String cancelConfirmWithFee(String fee) {
+    return 'إلغاء ودفع $fee';
+  }
+
+  @override
+  String get cancelKeep => 'الإبقاء على الحجز';
+
+  @override
+  String get cancelledFree => 'أُلغي دون رسوم.';
+
+  @override
+  String cancelledWithFee(String fee) {
+    return 'أُلغي برسوم قدرها $fee.';
+  }
 }

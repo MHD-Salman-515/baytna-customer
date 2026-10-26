@@ -450,4 +450,157 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get bookingErrorWorkerUnavailable =>
       'She\'s no longer available to book. Please choose someone else.';
+
+  @override
+  String get myBookings => 'My bookings';
+
+  @override
+  String get bookingView => 'View booking';
+
+  @override
+  String get bookingsTitle => 'My bookings';
+
+  @override
+  String get bookingsFilterAll => 'All';
+
+  @override
+  String get bookingsEmpty => 'No bookings here yet.';
+
+  @override
+  String get bookingDetailTitle => 'Booking details';
+
+  @override
+  String get bookingFrozenPrice => 'Locked-in price';
+
+  @override
+  String get statusSearching => 'Searching';
+
+  @override
+  String get statusPendingWorker => 'Waiting for her reply';
+
+  @override
+  String get statusAccepted => 'Accepted';
+
+  @override
+  String get statusOnTheWay => 'On the way';
+
+  @override
+  String get statusArrived => 'Arrived';
+
+  @override
+  String get statusInProgress => 'In progress';
+
+  @override
+  String get statusCompleted => 'Completed';
+
+  @override
+  String get statusRejected => 'Declined';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String get statusExpired => 'Expired';
+
+  @override
+  String get statusNoWorkerFound => 'No worker found';
+
+  @override
+  String get statusNoShow => 'No-show';
+
+  @override
+  String get statusUnknown => 'Unknown status';
+
+  @override
+  String get explainPending =>
+      'Your request was sent; we\'re waiting for her reply.';
+
+  @override
+  String explainPendingUntil(String deadline) {
+    return 'Your request was sent. If she doesn\'t reply by $deadline, it lapses automatically.';
+  }
+
+  @override
+  String get explainAccepted => 'She accepted. Her phone number is below.';
+
+  @override
+  String get explainUnderway => 'The visit is underway.';
+
+  @override
+  String get explainCompleted => 'The visit is complete.';
+
+  @override
+  String get explainRejected =>
+      'She declined this booking. You can book someone else.';
+
+  @override
+  String get explainExpired =>
+      'She didn\'t reply in time, so the booking didn\'t go ahead.';
+
+  @override
+  String get explainCancelled => 'This booking was cancelled.';
+
+  @override
+  String get workerPhoneHidden =>
+      'Her phone number appears here once she accepts.';
+
+  @override
+  String get workerPhoneNotShared =>
+      'Her number wasn\'t shared for this booking.';
+
+  @override
+  String get copyPhone => 'Copy number';
+
+  @override
+  String get cancelBooking => 'Cancel booking';
+
+  @override
+  String get cancelTitle => 'Cancel this booking?';
+
+  @override
+  String cancelFeeFree(String until) {
+    return 'Cancelling is free now, until $until.';
+  }
+
+  @override
+  String cancelFeeLate(String fee, int hours, String percent) {
+    return 'A $fee cancellation fee applies, because the visit is less than $hours hours away. ($percent% of the booking price)';
+  }
+
+  @override
+  String get cancelReasonLabel => 'Reason';
+
+  @override
+  String get cancelReasonPlans => 'My plans changed';
+
+  @override
+  String get cancelReasonTime => 'The time no longer suits me';
+
+  @override
+  String get cancelReasonElse => 'I found another option';
+
+  @override
+  String get cancelReasonOther => 'Other';
+
+  @override
+  String get cancelReasonOtherHint => 'Write the reason';
+
+  @override
+  String get cancelConfirmFree => 'Confirm cancellation';
+
+  @override
+  String cancelConfirmWithFee(String fee) {
+    return 'Cancel and pay $fee';
+  }
+
+  @override
+  String get cancelKeep => 'Keep the booking';
+
+  @override
+  String get cancelledFree => 'Cancelled at no charge.';
+
+  @override
+  String cancelledWithFee(String fee) {
+    return 'Cancelled with a $fee fee.';
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:baytna_customer/core/error/failure.dart';
+import 'package:baytna_customer/core/network/paged.dart';
 import 'package:baytna_customer/core/utils/result.dart';
 import 'package:baytna_customer/features/bookings/data/booking_remote_data_source.dart';
 import 'package:baytna_customer/features/bookings/domain/booking_failures.dart';
@@ -27,6 +28,16 @@ class BookingRepositoryImpl implements BookingRepository {
     }
     return result;
   }
+
+  @override
+  Future<Result<Paged<Booking>>> list({BookingStatus? status, int page = 1}) =>
+      guard(() => _remote.list(status: status, page: page));
+
+  @override
+  Future<Result<Booking>> get(String id) => guard(() => _remote.get(id));
+
+  @override
+  Future<Result<Booking>> cancel(String id, String reason) => guard(() => _remote.cancel(id, reason));
 
   /// No answer, or a gateway error after the request may have reached the app.
   static bool _isAmbiguous(Failure f) => switch (f) {

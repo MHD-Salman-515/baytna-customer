@@ -805,6 +805,282 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'لم تعد هذه العاملة متاحة للحجز. اختر عاملة أخرى.'**
   String get bookingErrorWorkerUnavailable;
+
+  /// No description provided for @myBookings.
+  ///
+  /// In ar, this message translates to:
+  /// **'حجوزاتي'**
+  String get myBookings;
+
+  /// No description provided for @bookingView.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض الحجز'**
+  String get bookingView;
+
+  /// No description provided for @bookingsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'حجوزاتي'**
+  String get bookingsTitle;
+
+  /// No description provided for @bookingsFilterAll.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكل'**
+  String get bookingsFilterAll;
+
+  /// No description provided for @bookingsEmpty.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد حجوزات هنا بعد.'**
+  String get bookingsEmpty;
+
+  /// No description provided for @bookingDetailTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفاصيل الحجز'**
+  String get bookingDetailTitle;
+
+  /// No description provided for @bookingFrozenPrice.
+  ///
+  /// In ar, this message translates to:
+  /// **'السعر المثبّت'**
+  String get bookingFrozenPrice;
+
+  /// No description provided for @statusSearching.
+  ///
+  /// In ar, this message translates to:
+  /// **'جارٍ البحث'**
+  String get statusSearching;
+
+  /// No description provided for @statusPendingWorker.
+  ///
+  /// In ar, this message translates to:
+  /// **'بانتظار رد العاملة'**
+  String get statusPendingWorker;
+
+  /// No description provided for @statusAccepted.
+  ///
+  /// In ar, this message translates to:
+  /// **'مقبول'**
+  String get statusAccepted;
+
+  /// No description provided for @statusOnTheWay.
+  ///
+  /// In ar, this message translates to:
+  /// **'العاملة في الطريق'**
+  String get statusOnTheWay;
+
+  /// No description provided for @statusArrived.
+  ///
+  /// In ar, this message translates to:
+  /// **'وصلت العاملة'**
+  String get statusArrived;
+
+  /// No description provided for @statusInProgress.
+  ///
+  /// In ar, this message translates to:
+  /// **'قيد التنفيذ'**
+  String get statusInProgress;
+
+  /// No description provided for @statusCompleted.
+  ///
+  /// In ar, this message translates to:
+  /// **'مكتمل'**
+  String get statusCompleted;
+
+  /// No description provided for @statusRejected.
+  ///
+  /// In ar, this message translates to:
+  /// **'اعتذرت العاملة'**
+  String get statusRejected;
+
+  /// No description provided for @statusCancelled.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملغى'**
+  String get statusCancelled;
+
+  /// No description provided for @statusExpired.
+  ///
+  /// In ar, this message translates to:
+  /// **'انتهت مهلة الرد'**
+  String get statusExpired;
+
+  /// No description provided for @statusNoWorkerFound.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم نجد عاملة'**
+  String get statusNoWorkerFound;
+
+  /// No description provided for @statusNoShow.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم يتم الحضور'**
+  String get statusNoShow;
+
+  /// No description provided for @statusUnknown.
+  ///
+  /// In ar, this message translates to:
+  /// **'حالة غير معروفة'**
+  String get statusUnknown;
+
+  /// No description provided for @explainPending.
+  ///
+  /// In ar, this message translates to:
+  /// **'أُرسل طلبك إلى العاملة وننتظر ردها.'**
+  String get explainPending;
+
+  /// No description provided for @explainPendingUntil.
+  ///
+  /// In ar, this message translates to:
+  /// **'أُرسل طلبك إلى العاملة. إن لم ترد قبل {deadline} يُلغى الطلب تلقائياً.'**
+  String explainPendingUntil(String deadline);
+
+  /// No description provided for @explainAccepted.
+  ///
+  /// In ar, this message translates to:
+  /// **'قبلت العاملة الحجز. رقم هاتفها ظاهر أدناه.'**
+  String get explainAccepted;
+
+  /// No description provided for @explainUnderway.
+  ///
+  /// In ar, this message translates to:
+  /// **'الزيارة جارية.'**
+  String get explainUnderway;
+
+  /// No description provided for @explainCompleted.
+  ///
+  /// In ar, this message translates to:
+  /// **'اكتملت الزيارة.'**
+  String get explainCompleted;
+
+  /// No description provided for @explainRejected.
+  ///
+  /// In ar, this message translates to:
+  /// **'اعتذرت العاملة عن هذا الحجز. يمكنك حجز عاملة أخرى.'**
+  String get explainRejected;
+
+  /// No description provided for @explainExpired.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم ترد العاملة في الوقت المحدد، فلم يُثبَّت الحجز.'**
+  String get explainExpired;
+
+  /// No description provided for @explainCancelled.
+  ///
+  /// In ar, this message translates to:
+  /// **'أُلغي هذا الحجز.'**
+  String get explainCancelled;
+
+  /// No description provided for @workerPhoneHidden.
+  ///
+  /// In ar, this message translates to:
+  /// **'يظهر رقم هاتفها هنا عندما تقبل الحجز.'**
+  String get workerPhoneHidden;
+
+  /// No description provided for @workerPhoneNotShared.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم تتم مشاركة رقمها لهذا الحجز.'**
+  String get workerPhoneNotShared;
+
+  /// No description provided for @copyPhone.
+  ///
+  /// In ar, this message translates to:
+  /// **'نسخ الرقم'**
+  String get copyPhone;
+
+  /// No description provided for @cancelBooking.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء الحجز'**
+  String get cancelBooking;
+
+  /// No description provided for @cancelTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء الحجز؟'**
+  String get cancelTitle;
+
+  /// No description provided for @cancelFeeFree.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإلغاء مجاني الآن، وحتى {until}.'**
+  String cancelFeeFree(String until);
+
+  /// No description provided for @cancelFeeLate.
+  ///
+  /// In ar, this message translates to:
+  /// **'ستُحتسب رسوم إلغاء قدرها {fee}، لأن الموعد بعد أقل من {hours} ساعة. (الرسوم {percent}% من سعر الحجز)'**
+  String cancelFeeLate(String fee, int hours, String percent);
+
+  /// No description provided for @cancelReasonLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'سبب الإلغاء'**
+  String get cancelReasonLabel;
+
+  /// No description provided for @cancelReasonPlans.
+  ///
+  /// In ar, this message translates to:
+  /// **'تغيّرت خططي'**
+  String get cancelReasonPlans;
+
+  /// No description provided for @cancelReasonTime.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموعد لم يعد مناسباً'**
+  String get cancelReasonTime;
+
+  /// No description provided for @cancelReasonElse.
+  ///
+  /// In ar, this message translates to:
+  /// **'وجدت حلاً آخر'**
+  String get cancelReasonElse;
+
+  /// No description provided for @cancelReasonOther.
+  ///
+  /// In ar, this message translates to:
+  /// **'سبب آخر'**
+  String get cancelReasonOther;
+
+  /// No description provided for @cancelReasonOtherHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'اكتب السبب'**
+  String get cancelReasonOtherHint;
+
+  /// No description provided for @cancelConfirmFree.
+  ///
+  /// In ar, this message translates to:
+  /// **'تأكيد الإلغاء'**
+  String get cancelConfirmFree;
+
+  /// No description provided for @cancelConfirmWithFee.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء ودفع {fee}'**
+  String cancelConfirmWithFee(String fee);
+
+  /// No description provided for @cancelKeep.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإبقاء على الحجز'**
+  String get cancelKeep;
+
+  /// No description provided for @cancelledFree.
+  ///
+  /// In ar, this message translates to:
+  /// **'أُلغي دون رسوم.'**
+  String get cancelledFree;
+
+  /// No description provided for @cancelledWithFee.
+  ///
+  /// In ar, this message translates to:
+  /// **'أُلغي برسوم قدرها {fee}.'**
+  String cancelledWithFee(String fee);
 }
 
 class _AppLocalizationsDelegate

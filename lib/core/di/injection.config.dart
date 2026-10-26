@@ -48,8 +48,12 @@ import 'package:baytna_customer/features/bookings/data/booking_repository_impl.d
     as _i1062;
 import 'package:baytna_customer/features/bookings/domain/booking_repository.dart'
     as _i717;
+import 'package:baytna_customer/features/bookings/presentation/bloc/detail/booking_detail_bloc.dart'
+    as _i1011;
 import 'package:baytna_customer/features/bookings/presentation/bloc/flow/booking_flow_bloc.dart'
     as _i128;
+import 'package:baytna_customer/features/bookings/presentation/bloc/list/bookings_list_bloc.dart'
+    as _i572;
 import 'package:baytna_customer/features/cities/data/datasources/city_remote_data_source.dart'
     as _i657;
 import 'package:baytna_customer/features/cities/data/repositories/city_repository_impl.dart'
@@ -195,6 +199,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i798.ServiceRepository>(
       () => _i853.ServiceRepositoryImpl(gh<_i902.ServiceRemoteDataSource>()),
     );
+    gh.factory<_i1011.BookingDetailBloc>(
+      () => _i1011.BookingDetailBloc(
+        gh<_i717.BookingRepository>(),
+        gh<_i830.CountryRepository>(),
+        gh<_i798.ServiceRepository>(),
+        gh<_i607.WorkerRepository>(),
+        gh<_i759.Clock>(),
+      ),
+    );
     gh.factory<_i289.QuoteBloc>(
       () => _i289.QuoteBloc(gh<_i502.PricingRepository>()),
     );
@@ -253,6 +266,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i409.AppRouter>(
       () => _i409.AppRouter(gh<_i390.AuthBloc>()),
+    );
+    gh.factory<_i572.BookingsListBloc>(
+      () => _i572.BookingsListBloc(
+        gh<_i717.BookingRepository>(),
+        gh<_i798.ServiceRepository>(),
+        gh<_i830.CountryRepository>(),
+      ),
     );
     gh.factory<_i278.ServicesBloc>(
       () => _i278.ServicesBloc(gh<_i798.ServiceRepository>()),

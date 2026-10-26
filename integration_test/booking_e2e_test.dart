@@ -13,7 +13,11 @@ import 'package:integration_test/integration_test.dart';
 ///
 ///   sign in → CLEANING → browse (Damascus) → her profile → price preview
 ///   (minimum stated first) → a day and a free time → map pin + landmark →
-///   review → POST /bookings → …
+///   review → POST /bookings → the booking (worker's phone hidden while
+///   pending; cancel fee previewed, NOT confirmed) → My bookings.
+///
+/// It leaves a real PENDING_WORKER booking on staging; it lapses on its own
+/// after the country's response deadline if the worker doesn't answer.
 ///
 /// Location: grant ACCESS_FINE_LOCATION once the app is installed and put
 /// the emulator in Damascus (`adb emu geo fix 36.25 33.5005`) to see the pin
@@ -167,6 +171,36 @@ void main() {
       final number = textOf(tester, find.byKey(const ValueKey('created-number')));
       log('CREATED: $number');
       await shot(tester, '07-created');
+
+      // ── 7. The booking: status, frozen price, phone hidden until accepted ─
+      await tapVisible(tester, find.byKey(const ValueKey('view-booking')));
+      await waitFor(tester, find.byKey(const ValueKey('detail-price')));
+      expect(find.byKey(const ValueKey('status-PENDING_WORKER')), findsOneWidget);
+      expect(find.byKey(const ValueKey('worker-phone')), findsNothing);
+      log('DETAIL: ${textOf(tester, find.byKey(const ValueKey('detail-number')))} | status PENDING_WORKER | '
+          'frozen price ${textOf(tester, find.byKey(const ValueKey('detail-price')))}');
+      log('PHONE: "${textOf(tester, find.byKey(const ValueKey('worker-phone-hidden')))}"');
+      log('STATUS NOTE: "${textOf(tester, find.byKey(const ValueKey('status-explanation')))}"');
+      await shot(tester, '08-detail-phone-hidden');
+
+      // Cancellation fee is shown BEFORE confirming; we keep the booking.
+      await tapVisible(tester, find.byKey(const ValueKey('cancel-booking')));
+      await waitFor(tester, find.byKey(const ValueKey('cancel-fee')));
+      await tester.pump(const Duration(milliseconds: 500));
+      final fee = find.descendant(of: find.byKey(const ValueKey('cancel-fee')), matching: find.byType(Text));
+      log('CANCEL PREVIEW: "${textOf(tester, fee)}"');
+      await shot(tester, '09-cancel-preview');
+      await tester.tap(find.text('الإبقاء على الحجز'));
+      await tester.pumpAndSettle();
+
+      // ── 8. My bookings ────────────────────────────────────────────────────
+      await tester.pageBack();
+      await waitFor(tester, find.byKey(const ValueKey('my-bookings')));
+      await tester.tap(find.byKey(const ValueKey('my-bookings')));
+      await waitFor(tester, find.textContaining(number.split(' ').last));
+      log('MY BOOKINGS lists ${number.split(' ').last} '
+          '(${find.byWidgetPredicate((w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('booking-')).evaluate().length} booking(s))');
+      await shot(tester, '10-my-bookings');
 
       log('total ${DateTime.now().difference(started).inSeconds}s');
     } finally {

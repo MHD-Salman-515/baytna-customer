@@ -8,7 +8,9 @@ import 'package:baytna_customer/features/auth/presentation/screens/country_selec
 import 'package:baytna_customer/features/auth/presentation/screens/otp_screen.dart';
 import 'package:baytna_customer/features/auth/presentation/screens/phone_entry_screen.dart';
 import 'package:baytna_customer/features/auth/presentation/screens/splash_screen.dart';
+import 'package:baytna_customer/features/bookings/presentation/screens/booking_detail_screen.dart';
 import 'package:baytna_customer/features/bookings/presentation/screens/booking_flow_screen.dart';
+import 'package:baytna_customer/features/bookings/presentation/screens/bookings_screen.dart';
 import 'package:baytna_customer/features/home/presentation/screens/home_screen.dart';
 import 'package:baytna_customer/features/workers/presentation/screens/browse_workers_screen.dart';
 import 'package:baytna_customer/features/workers/presentation/screens/worker_detail_screen.dart';
@@ -43,6 +45,16 @@ class AppRouter {
         ),
       ),
       GoRoute(path: AppRoutes.home, builder: (_, _) => const HomeScreen()),
+      GoRoute(
+        path: AppRoutes.bookings,
+        builder: (_, _) => const BookingsScreen(),
+        routes: [
+          GoRoute(
+            path: ':bookingId',
+            builder: (_, state) => BookingDetailScreen(bookingId: state.pathParameters['bookingId']!),
+          ),
+        ],
+      ),
       GoRoute(
         path: AppRoutes.workers,
         redirect: (_, state) => _requireOrHome(state, ['serviceId']),

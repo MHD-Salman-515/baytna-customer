@@ -78,7 +78,14 @@ class _OtpBody extends StatelessWidget {
           OtpEditing() || OtpInvalidCode() || OtpResending() || OtpResent() || OtpFailed() => false,
         };
 
-        return Column(
+        // Pins the verify button to the bottom when there's room, and scrolls
+        // when there isn't (small phones, the keyboard, the dev button).
+        return LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             OtpCodeField(
@@ -117,6 +124,10 @@ class _OtpBody extends StatelessWidget {
             const SizedBox(height: 8),
             TextButton(onPressed: () => context.pop(), child: Text(l10n.changeNumber)),
           ],
+                ),
+              ),
+            ),
+          ),
         );
       },
     );

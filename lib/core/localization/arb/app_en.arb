@@ -33,7 +33,8 @@
   "homeTitle": "Home",
   "homeWelcome": "Welcome to Baytna",
   "homeSignedInAs": "Signed in as",
-  "homeComingSoon": "Service booking is coming soon",
+  "homeChooseService": "Choose the service you need",
+  "homeServicesEmpty": "No services are available right now.",
   "logout": "Log out",
   "sessionExpired": "Your session has ended. Please log in again.",
 

@@ -260,11 +260,17 @@ abstract class AppLocalizations {
   /// **'تم تسجيل الدخول بالرقم'**
   String get homeSignedInAs;
 
-  /// No description provided for @homeComingSoon.
+  /// No description provided for @homeChooseService.
   ///
   /// In ar, this message translates to:
-  /// **'حجز الخدمات قادم قريباً'**
-  String get homeComingSoon;
+  /// **'اختر الخدمة التي تحتاجها'**
+  String get homeChooseService;
+
+  /// No description provided for @homeServicesEmpty.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد خدمات متاحة حالياً.'**
+  String get homeServicesEmpty;
 
   /// No description provided for @logout.
   ///

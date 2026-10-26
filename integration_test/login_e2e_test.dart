@@ -1,6 +1,7 @@
 import 'package:baytna_customer/core/dev/dev_otp.dart';
 import 'package:baytna_customer/features/auth/domain/phone_number.dart';
 import 'package:baytna_customer/main.dart' as app;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -62,6 +63,10 @@ void main() {
     };
     try {
       await app.main();
+      // Android can only screenshot after the surface is converted to an image.
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        await binding.convertFlutterSurfaceToImage();
+      }
       log('app started; waiting for countries (server may be cold)…');
       await waitFor(tester, find.byKey(const ValueKey('country-SY')));
       log(
@@ -102,6 +107,11 @@ void main() {
           .data!;
       log('HOME shows phone: $shown');
       expect(shown, contains(PhoneNumber.toE164(phone, prefix: '+963')));
+      await waitFor(tester, find.byKey(const ValueKey('service-CLEANING')));
+      for (final key in ['CLEANING', 'COOKING', 'IRONING']) {
+        expect(find.byKey(ValueKey('service-$key')), findsOneWidget);
+      }
+      log('HOME lists the live services: ${find.textContaining('تنظيف').evaluate().isNotEmpty ? 'تنظيف, طبخ, كوي الملابس' : '?'}');
       await tester.pump(
         const Duration(seconds: 3),
       ); // let PATCH /users/me/locale finish

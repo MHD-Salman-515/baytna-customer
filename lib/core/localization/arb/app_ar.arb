@@ -38,7 +38,8 @@
   "homeTitle": "الرئيسية",
   "homeWelcome": "أهلاً بك في بيتنا",
   "homeSignedInAs": "تم تسجيل الدخول بالرقم",
-  "homeComingSoon": "حجز الخدمات قادم قريباً",
+  "homeChooseService": "اختر الخدمة التي تحتاجها",
+  "homeServicesEmpty": "لا توجد خدمات متاحة حالياً.",
   "logout": "تسجيل الخروج",
   "sessionExpired": "انتهت جلستك. يرجى تسجيل الدخول مجدداً.",
 

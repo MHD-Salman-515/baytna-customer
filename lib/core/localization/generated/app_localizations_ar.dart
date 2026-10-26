@@ -104,7 +104,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeSignedInAs => 'تم تسجيل الدخول بالرقم';
 
   @override
-  String get homeComingSoon => 'حجز الخدمات قادم قريباً';
+  String get homeChooseService => 'اختر الخدمة التي تحتاجها';
+
+  @override
+  String get homeServicesEmpty => 'لا توجد خدمات متاحة حالياً.';
 
   @override
   String get logout => 'تسجيل الخروج';

@@ -53,6 +53,14 @@ import 'package:baytna_customer/features/countries/data/repositories/country_rep
     as _i1054;
 import 'package:baytna_customer/features/countries/domain/repositories/country_repository.dart'
     as _i830;
+import 'package:baytna_customer/features/services/data/datasources/service_remote_data_source.dart'
+    as _i902;
+import 'package:baytna_customer/features/services/data/repositories/service_repository_impl.dart'
+    as _i853;
+import 'package:baytna_customer/features/services/domain/repositories/service_repository.dart'
+    as _i798;
+import 'package:baytna_customer/features/services/presentation/bloc/services_bloc.dart'
+    as _i278;
 import 'package:dio/dio.dart' as _i361;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
@@ -121,6 +129,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1003.CountryRemoteDataSource>(
       () => _i1003.CountryRemoteDataSource(gh<_i36.ApiClient>()),
     );
+    gh.lazySingleton<_i902.ServiceRemoteDataSource>(
+      () => _i902.ServiceRemoteDataSource(gh<_i36.ApiClient>()),
+    );
     gh.lazySingleton<_i830.CountryRepository>(
       () => _i1054.CountryRepositoryImpl(gh<_i1003.CountryRemoteDataSource>()),
     );
@@ -129,6 +140,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i67.CountriesBloc>(
       () => _i67.CountriesBloc(gh<_i830.CountryRepository>()),
+    );
+    gh.lazySingleton<_i798.ServiceRepository>(
+      () => _i853.ServiceRepositoryImpl(gh<_i902.ServiceRemoteDataSource>()),
     );
     gh.lazySingleton<_i244.AuthRepository>(
       () => _i878.AuthRepositoryImpl(
@@ -161,6 +175,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i409.AppRouter>(
       () => _i409.AppRouter(gh<_i390.AuthBloc>()),
+    );
+    gh.factory<_i278.ServicesBloc>(
+      () => _i278.ServicesBloc(gh<_i798.ServiceRepository>()),
     );
     return this;
   }

@@ -106,7 +106,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeSignedInAs => 'Signed in as';
 
   @override
-  String get homeComingSoon => 'Service booking is coming soon';
+  String get homeChooseService => 'Choose the service you need';
+
+  @override
+  String get homeServicesEmpty => 'No services are available right now.';
 
   @override
   String get logout => 'Log out';

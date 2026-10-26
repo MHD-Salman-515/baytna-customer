@@ -55,6 +55,14 @@ import 'package:baytna_customer/features/countries/data/repositories/country_rep
     as _i1054;
 import 'package:baytna_customer/features/countries/domain/repositories/country_repository.dart'
     as _i830;
+import 'package:baytna_customer/features/pricing/data/pricing_remote_data_source.dart'
+    as _i963;
+import 'package:baytna_customer/features/pricing/data/pricing_repository_impl.dart'
+    as _i394;
+import 'package:baytna_customer/features/pricing/domain/pricing_repository.dart'
+    as _i502;
+import 'package:baytna_customer/features/pricing/presentation/bloc/quote_bloc.dart'
+    as _i289;
 import 'package:baytna_customer/features/services/data/datasources/service_remote_data_source.dart'
     as _i902;
 import 'package:baytna_customer/features/services/data/repositories/service_repository_impl.dart'
@@ -142,6 +150,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1003.CountryRemoteDataSource>(
       () => _i1003.CountryRemoteDataSource(gh<_i36.ApiClient>()),
     );
+    gh.lazySingleton<_i963.PricingRemoteDataSource>(
+      () => _i963.PricingRemoteDataSource(gh<_i36.ApiClient>()),
+    );
     gh.lazySingleton<_i902.ServiceRemoteDataSource>(
       () => _i902.ServiceRemoteDataSource(gh<_i36.ApiClient>()),
     );
@@ -157,11 +168,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i501.CityRepository>(
       () => _i948.CityRepositoryImpl(gh<_i657.CityRemoteDataSource>()),
     );
+    gh.lazySingleton<_i502.PricingRepository>(
+      () => _i394.PricingRepositoryImpl(gh<_i963.PricingRemoteDataSource>()),
+    );
     gh.factory<_i67.CountriesBloc>(
       () => _i67.CountriesBloc(gh<_i830.CountryRepository>()),
     );
     gh.lazySingleton<_i798.ServiceRepository>(
       () => _i853.ServiceRepositoryImpl(gh<_i902.ServiceRemoteDataSource>()),
+    );
+    gh.factory<_i289.QuoteBloc>(
+      () => _i289.QuoteBloc(gh<_i502.PricingRepository>()),
     );
     gh.lazySingleton<_i244.AuthRepository>(
       () => _i878.AuthRepositoryImpl(

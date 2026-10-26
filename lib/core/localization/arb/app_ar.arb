@@ -86,5 +86,24 @@
   "@pricingExplainBySize": { "placeholders": { "price": { "type": "String" } } },
   "pricingExplainFixed": "سعر ثابت للخدمة كاملة: {price}.",
   "@pricingExplainFixed": { "placeholders": { "price": { "type": "String" } } },
-  "pricingExplainUnknown": "ستعرف السعر قبل تأكيد الحجز."
+  "pricingExplainUnknown": "ستعرف السعر قبل تأكيد الحجز.",
+
+  "hoursCount": "{count, plural, =1{ساعة واحدة} =2{ساعتان} few{{count} ساعات} many{{count} ساعة} other{{count} ساعة}}",
+  "@hoursCount": { "placeholders": { "count": { "type": "int" } } },
+  "hoursDecimal": "{hours} ساعة",
+  "@hoursDecimal": { "placeholders": { "hours": { "type": "String" } } },
+  "roomsCount": "{count, plural, =1{غرفة واحدة} =2{غرفتان} few{{count} غرف} many{{count} غرفة} other{{count} غرفة}}",
+  "@roomsCount": { "placeholders": { "count": { "type": "int" } } },
+  "quoteSectionTitle": "احسب السعر",
+  "quoteHours": "عدد الساعات",
+  "quoteRooms": "عدد الغرف",
+  "quoteExpectedDuration": "المدة المتوقعة للعمل",
+  "quoteMinimumHours": "أقل مدة يمكن حجزها مع هذه العاملة {duration}. تُحسب {duration} على الأقل حتى لو انتهى العمل أبكر.",
+  "@quoteMinimumHours": { "placeholders": { "duration": { "type": "String" } } },
+  "quotePriceLabel": "السعر",
+  "quoteForHours": "مقابل {duration}",
+  "@quoteForHours": { "placeholders": { "duration": { "type": "String" } } },
+  "quoteForRooms": "مقابل {rooms}",
+  "@quoteForRooms": { "placeholders": { "rooms": { "type": "String" } } },
+  "quoteFrozenNote": "هذا السعر من بيتنا، ويُثبَّت عند تأكيد الحجز."
 }

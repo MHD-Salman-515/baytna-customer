@@ -228,4 +228,70 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pricingExplainUnknown => 'ستعرف السعر قبل تأكيد الحجز.';
+
+  @override
+  String hoursCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ساعة',
+      many: '$count ساعة',
+      few: '$count ساعات',
+      two: 'ساعتان',
+      one: 'ساعة واحدة',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoursDecimal(String hours) {
+    return '$hours ساعة';
+  }
+
+  @override
+  String roomsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count غرفة',
+      many: '$count غرفة',
+      few: '$count غرف',
+      two: 'غرفتان',
+      one: 'غرفة واحدة',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get quoteSectionTitle => 'احسب السعر';
+
+  @override
+  String get quoteHours => 'عدد الساعات';
+
+  @override
+  String get quoteRooms => 'عدد الغرف';
+
+  @override
+  String get quoteExpectedDuration => 'المدة المتوقعة للعمل';
+
+  @override
+  String quoteMinimumHours(String duration) {
+    return 'أقل مدة يمكن حجزها مع هذه العاملة $duration. تُحسب $duration على الأقل حتى لو انتهى العمل أبكر.';
+  }
+
+  @override
+  String get quotePriceLabel => 'السعر';
+
+  @override
+  String quoteForHours(String duration) {
+    return 'مقابل $duration';
+  }
+
+  @override
+  String quoteForRooms(String rooms) {
+    return 'مقابل $rooms';
+  }
+
+  @override
+  String get quoteFrozenNote => 'هذا السعر من بيتنا، ويُثبَّت عند تأكيد الحجز.';
 }

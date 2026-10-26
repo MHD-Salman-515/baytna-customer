@@ -4,6 +4,8 @@ import 'package:baytna_customer/core/localization/localized_text.dart';
 import 'package:baytna_customer/core/widgets/failure_view.dart';
 import 'package:baytna_customer/core/widgets/language_toggle_button.dart';
 import 'package:baytna_customer/features/auth/presentation/bloc/auth/auth_bloc.dart';
+import 'package:baytna_customer/features/pricing/presentation/bloc/quote_bloc.dart';
+import 'package:baytna_customer/features/pricing/presentation/widgets/quote_panel.dart';
 import 'package:baytna_customer/features/workers/domain/entities/worker.dart';
 import 'package:baytna_customer/features/workers/presentation/bloc/detail/worker_detail_bloc.dart';
 import 'package:baytna_customer/features/workers/presentation/widgets/pricing_explainer.dart';
@@ -153,6 +155,24 @@ class _WorkerProfileBodyState extends State<WorkerProfileBody> {
                 onTap: () => setState(() => _serviceId = o.serviceId),
               ),
               const SizedBox(height: 8),
+            ],
+            if (selected != null && selected.isBookable) ...[
+              const SizedBox(height: 16),
+              Text(
+                l10n.quoteSectionTitle,
+                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 12),
+              BlocProvider(
+                // A new offering is a new quote, not a continuation of the old one.
+                key: ValueKey(selected.workerServiceId),
+                create: (_) => getIt<QuoteBloc>()
+                  ..add(QuoteStarted(
+                    workerServiceId: selected.workerServiceId!,
+                    pricingType: selected.pricingType,
+                  )),
+                child: const QuotePanel(),
+              ),
             ],
             if (selected != null && !selected.isBookable) ...[
               const SizedBox(height: 8),

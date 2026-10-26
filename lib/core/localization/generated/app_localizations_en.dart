@@ -236,4 +236,65 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get pricingExplainUnknown =>
       'You\'ll see the price before you confirm.';
+
+  @override
+  String hoursCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hours',
+      one: '1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoursDecimal(String hours) {
+    return '$hours hours';
+  }
+
+  @override
+  String roomsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count rooms',
+      one: '1 room',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get quoteSectionTitle => 'Work out the price';
+
+  @override
+  String get quoteHours => 'Hours';
+
+  @override
+  String get quoteRooms => 'Rooms';
+
+  @override
+  String get quoteExpectedDuration => 'Expected duration';
+
+  @override
+  String quoteMinimumHours(String duration) {
+    return 'The shortest booking with her is $duration. You pay for at least $duration, even if the job finishes sooner.';
+  }
+
+  @override
+  String get quotePriceLabel => 'Price';
+
+  @override
+  String quoteForHours(String duration) {
+    return 'For $duration';
+  }
+
+  @override
+  String quoteForRooms(String rooms) {
+    return 'For $rooms';
+  }
+
+  @override
+  String get quoteFrozenNote =>
+      'This price comes from Baytna and is locked in when you confirm.';
 }

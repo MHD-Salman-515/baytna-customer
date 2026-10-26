@@ -475,6 +475,78 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'ستعرف السعر قبل تأكيد الحجز.'**
   String get pricingExplainUnknown;
+
+  /// No description provided for @hoursCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'{count, plural, =1{ساعة واحدة} =2{ساعتان} few{{count} ساعات} many{{count} ساعة} other{{count} ساعة}}'**
+  String hoursCount(int count);
+
+  /// No description provided for @hoursDecimal.
+  ///
+  /// In ar, this message translates to:
+  /// **'{hours} ساعة'**
+  String hoursDecimal(String hours);
+
+  /// No description provided for @roomsCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'{count, plural, =1{غرفة واحدة} =2{غرفتان} few{{count} غرف} many{{count} غرفة} other{{count} غرفة}}'**
+  String roomsCount(int count);
+
+  /// No description provided for @quoteSectionTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'احسب السعر'**
+  String get quoteSectionTitle;
+
+  /// No description provided for @quoteHours.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدد الساعات'**
+  String get quoteHours;
+
+  /// No description provided for @quoteRooms.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدد الغرف'**
+  String get quoteRooms;
+
+  /// No description provided for @quoteExpectedDuration.
+  ///
+  /// In ar, this message translates to:
+  /// **'المدة المتوقعة للعمل'**
+  String get quoteExpectedDuration;
+
+  /// No description provided for @quoteMinimumHours.
+  ///
+  /// In ar, this message translates to:
+  /// **'أقل مدة يمكن حجزها مع هذه العاملة {duration}. تُحسب {duration} على الأقل حتى لو انتهى العمل أبكر.'**
+  String quoteMinimumHours(String duration);
+
+  /// No description provided for @quotePriceLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'السعر'**
+  String get quotePriceLabel;
+
+  /// No description provided for @quoteForHours.
+  ///
+  /// In ar, this message translates to:
+  /// **'مقابل {duration}'**
+  String quoteForHours(String duration);
+
+  /// No description provided for @quoteForRooms.
+  ///
+  /// In ar, this message translates to:
+  /// **'مقابل {rooms}'**
+  String quoteForRooms(String rooms);
+
+  /// No description provided for @quoteFrozenNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا السعر من بيتنا، ويُثبَّت عند تأكيد الحجز.'**
+  String get quoteFrozenNote;
 }
 
 class _AppLocalizationsDelegate

@@ -80,5 +80,24 @@
   "@pricingExplainBySize": { "placeholders": { "price": { "type": "String" } } },
   "pricingExplainFixed": "One fixed price for the whole job: {price}.",
   "@pricingExplainFixed": { "placeholders": { "price": { "type": "String" } } },
-  "pricingExplainUnknown": "You'll see the price before you confirm."
+  "pricingExplainUnknown": "You'll see the price before you confirm.",
+
+  "hoursCount": "{count, plural, =1{1 hour} other{{count} hours}}",
+  "@hoursCount": { "placeholders": { "count": { "type": "int" } } },
+  "hoursDecimal": "{hours} hours",
+  "@hoursDecimal": { "placeholders": { "hours": { "type": "String" } } },
+  "roomsCount": "{count, plural, =1{1 room} other{{count} rooms}}",
+  "@roomsCount": { "placeholders": { "count": { "type": "int" } } },
+  "quoteSectionTitle": "Work out the price",
+  "quoteHours": "Hours",
+  "quoteRooms": "Rooms",
+  "quoteExpectedDuration": "Expected duration",
+  "quoteMinimumHours": "The shortest booking with her is {duration}. You pay for at least {duration}, even if the job finishes sooner.",
+  "@quoteMinimumHours": { "placeholders": { "duration": { "type": "String" } } },
+  "quotePriceLabel": "Price",
+  "quoteForHours": "For {duration}",
+  "@quoteForHours": { "placeholders": { "duration": { "type": "String" } } },
+  "quoteForRooms": "For {rooms}",
+  "@quoteForRooms": { "placeholders": { "rooms": { "type": "String" } } },
+  "quoteFrozenNote": "This price comes from Baytna and is locked in when you confirm."
 }

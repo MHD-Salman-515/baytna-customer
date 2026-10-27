@@ -387,7 +387,11 @@ class _CancelSheetState extends State<_CancelSheet> {
             label: fee > 0 ? l10n.cancelConfirmWithFee(context.money(fee, currency)) : l10n.cancelConfirmFree,
             onPressed: reason.isEmpty ? null : () => Navigator.of(context).pop(reason),
           ),
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.cancelKeep)),
+          TextButton(
+            key: const ValueKey('cancel-keep'),
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.cancelKeep),
+          ),
         ],
       ),
     );

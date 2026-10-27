@@ -37,6 +37,10 @@ void main() {
       ? phoneOverride
       : '0955${Random().nextInt(1000000).toString().padLeft(6, '0')}';
   const workerId = String.fromEnvironment('E2E_WORKER', defaultValue: '6adf1a91b4c4645d759bc2a0');
+  // Re-verify an EXISTING booking without creating another: pass
+  // E2E_VERIFY_ONLY=true, E2E_PHONE=<its customer> and E2E_BOOKING=<its number>.
+  const verifyOnly = bool.fromEnvironment('E2E_VERIFY_ONLY');
+  const existingBooking = String.fromEnvironment('E2E_BOOKING');
 
   Future<void> waitFor(WidgetTester tester, Finder finder, {int seconds = 120}) async {
     final end = DateTime.now().add(Duration(seconds: seconds));
@@ -59,7 +63,8 @@ void main() {
     await tester.pump();
   }
 
-  String textOf(WidgetTester tester, Finder finder) => tester.widget<Text>(finder).data ?? '';
+  String textOf(WidgetTester tester, Finder finder) =>
+      finder.evaluate().isEmpty ? '(missing)' : tester.widget<Text>(finder.first).data ?? '';
 
   void log(String message) => debugPrint('[e2e] $message');
 
@@ -96,7 +101,7 @@ void main() {
       // A new account has no home city: choose Damascus in the picker.
       await tester.pump(const Duration(seconds: 2));
       await tester.tap(find.byKey(const ValueKey('city-picker')));
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
       await tester.tap(find.text('دمشق').last);
       await tester.pump();
       await waitFor(tester, find.byKey(const ValueKey('worker-$workerId')));
@@ -120,6 +125,14 @@ void main() {
         isNull,
         reason: 'cannot go below her minimum',
       );
+      // Before ANY duration is picked: the notice must sit above the control.
+      final noticeY = tester.getTopLeft(find.byKey(const ValueKey('min-hours-notice'))).dy;
+      final controlY = tester.getTopLeft(find.byKey(const ValueKey('hours-value'))).dy;
+      expect(noticeY, lessThan(controlY));
+      log('ORDER (before any tap): minimum notice at y=${noticeY.round()}, hours control at '
+          'y=${controlY.round()} → the minimum is stated first; "−" disabled at the minimum');
+      await tester.ensureVisible(find.byKey(const ValueKey('min-hours-notice')));
+      await shot(tester, '03a-minimum-before-choosing');
       await tapVisible(tester, find.byKey(const ValueKey('hours-plus')));
       await tapVisible(tester, find.byKey(const ValueKey('hours-plus')));
       await tester.pump(const Duration(seconds: 3));
@@ -146,7 +159,7 @@ void main() {
       // ── 5. Pin + landmark ─────────────────────────────────────────────────
       await tapVisible(tester, find.byKey(const ValueKey('time-next')));
       await waitFor(tester, find.byKey(const ValueKey('address-map')));
-      await tester.pump(const Duration(seconds: 4)); // location + tiles
+      await tester.pump(const Duration(seconds: 10)); // location (≤10 s) + tiles
       log('PIN start: "${textOf(tester, find.byKey(const ValueKey('pin-source')))}"');
       // Drag the map: the pin (fixed at the centre) lands somewhere else.
       await tester.drag(find.byKey(const ValueKey('address-map')), const Offset(-60, 80));
@@ -162,45 +175,72 @@ void main() {
       // ── 6. Review and create ──────────────────────────────────────────────
       await tapVisible(tester, find.byKey(const ValueKey('address-next')));
       await waitFor(tester, find.byKey(const ValueKey('review-price')));
+      await shot(tester, '06-review');
+      log('REVIEW texts: ${find.byType(Text).evaluate().map((e) => (e.widget as Text).data).whereType<String>().where((t) => t.trim().isNotEmpty).join(' | ')}');
       log('REVIEW: ${textOf(tester, find.byKey(const ValueKey('review-when'))).replaceAll('\n', ' ')} | '
           'landmark "${textOf(tester, find.byKey(const ValueKey('review-landmark')))}" | '
           'price ${textOf(tester, find.byKey(const ValueKey('review-price')))}');
-      await shot(tester, '06-review');
-      await tapVisible(tester, find.byKey(const ValueKey('confirm-booking')));
-      await waitFor(tester, find.byKey(const ValueKey('booking-created')), seconds: 90);
-      final number = textOf(tester, find.byKey(const ValueKey('created-number')));
-      log('CREATED: $number');
-      await shot(tester, '07-created');
+      // The booking screen: status, frozen price, phone hidden until accepted;
+      // the cancellation fee is previewed BEFORE confirming, and we keep it.
+      Future<void> checkDetail() async {
+        await waitFor(tester, find.byKey(const ValueKey('detail-price')));
+        expect(find.byKey(const ValueKey('status-PENDING_WORKER')), findsOneWidget);
+        expect(find.byKey(const ValueKey('worker-phone')), findsNothing);
+        log('DETAIL: ${textOf(tester, find.byKey(const ValueKey('detail-number')))} | status PENDING_WORKER | '
+            'frozen price ${textOf(tester, find.byKey(const ValueKey('detail-price')))}');
+        log('PHONE: "${textOf(tester, find.byKey(const ValueKey('worker-phone-hidden')))}"');
+        log('STATUS NOTE: "${textOf(tester, find.byKey(const ValueKey('status-explanation')))}"');
+        await shot(tester, '08-detail-phone-hidden');
+        await tapVisible(tester, find.byKey(const ValueKey('cancel-booking')));
+        await waitFor(tester, find.byKey(const ValueKey('cancel-fee')));
+        await tester.pump(const Duration(milliseconds: 500));
+        final fee = find.descendant(of: find.byKey(const ValueKey('cancel-fee')), matching: find.byType(Text));
+        log('CANCEL PREVIEW: "${textOf(tester, fee)}"');
+        await shot(tester, '09-cancel-preview');
+        await tester.tap(find.byKey(const ValueKey('cancel-keep')));
+        await tester.pump(const Duration(seconds: 1));
+        expect(find.byKey(const ValueKey('cancel-fee')), findsNothing, reason: 'kept, sheet closed');
+      }
 
-      // ── 7. The booking: status, frozen price, phone hidden until accepted ─
-      await tapVisible(tester, find.byKey(const ValueKey('view-booking')));
-      await waitFor(tester, find.byKey(const ValueKey('detail-price')));
-      expect(find.byKey(const ValueKey('status-PENDING_WORKER')), findsOneWidget);
-      expect(find.byKey(const ValueKey('worker-phone')), findsNothing);
-      log('DETAIL: ${textOf(tester, find.byKey(const ValueKey('detail-number')))} | status PENDING_WORKER | '
-          'frozen price ${textOf(tester, find.byKey(const ValueKey('detail-price')))}');
-      log('PHONE: "${textOf(tester, find.byKey(const ValueKey('worker-phone-hidden')))}"');
-      log('STATUS NOTE: "${textOf(tester, find.byKey(const ValueKey('status-explanation')))}"');
-      await shot(tester, '08-detail-phone-hidden');
+      Future<void> backToHome() async {
+        for (var i = 0; i < 10 && find.byKey(const ValueKey('my-bookings')).evaluate().isEmpty; i++) {
+          await tester.tap(find.byType(BackButton).first);
+          await tester.pump(const Duration(seconds: 1));
+        }
+        await waitFor(tester, find.byKey(const ValueKey('my-bookings')));
+      }
 
-      // Cancellation fee is shown BEFORE confirming; we keep the booking.
-      await tapVisible(tester, find.byKey(const ValueKey('cancel-booking')));
-      await waitFor(tester, find.byKey(const ValueKey('cancel-fee')));
-      await tester.pump(const Duration(milliseconds: 500));
-      final fee = find.descendant(of: find.byKey(const ValueKey('cancel-fee')), matching: find.byType(Text));
-      log('CANCEL PREVIEW: "${textOf(tester, fee)}"');
-      await shot(tester, '09-cancel-preview');
-      await tester.tap(find.text('الإبقاء على الحجز'));
-      await tester.pumpAndSettle();
+      Future<void> openMyBookings(String number) async {
+        await tester.tap(find.byKey(const ValueKey('my-bookings')));
+        await waitFor(tester, find.text(number));
+        final tiles = find.byWidgetPredicate(
+          (w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('booking-'),
+        );
+        log('MY BOOKINGS lists $number (${tiles.evaluate().length} booking(s); '
+            'status badge: ${find.byKey(const ValueKey('status-PENDING_WORKER')).evaluate().length} × بانتظار رد العاملة)');
+        await shot(tester, '10-my-bookings');
+      }
 
-      // ── 8. My bookings ────────────────────────────────────────────────────
-      await tester.pageBack();
-      await waitFor(tester, find.byKey(const ValueKey('my-bookings')));
-      await tester.tap(find.byKey(const ValueKey('my-bookings')));
-      await waitFor(tester, find.textContaining(number.split(' ').last));
-      log('MY BOOKINGS lists ${number.split(' ').last} '
-          '(${find.byWidgetPredicate((w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('booking-')).evaluate().length} booking(s))');
-      await shot(tester, '10-my-bookings');
+      if (verifyOnly) {
+        // ── 7'. An existing booking: do NOT create a duplicate ──────────────
+        log('VERIFY-ONLY: stopping at review (no POST /bookings); checking $existingBooking');
+        await backToHome();
+        await openMyBookings(existingBooking);
+        await tester.tap(find.text(existingBooking));
+        await checkDetail();
+      } else {
+        // ── 7. Create ─────────────────────────────────────────────────────────
+        await tapVisible(tester, find.byKey(const ValueKey('confirm-booking')));
+        await waitFor(tester, find.byKey(const ValueKey('booking-created')), seconds: 90);
+        final number = textOf(tester, find.byKey(const ValueKey('created-number'))).split(' ').last;
+        log('CREATED: $number');
+        await shot(tester, '07-created');
+        await tapVisible(tester, find.byKey(const ValueKey('view-booking')));
+        await checkDetail();
+        // ── 8. My bookings ────────────────────────────────────────────────────
+        await backToHome();
+        await openMyBookings(number);
+      }
 
       log('total ${DateTime.now().difference(started).inSeconds}s');
     } finally {

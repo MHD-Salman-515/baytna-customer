@@ -372,6 +372,8 @@ class _AddressStepState extends State<_AddressStep> {
 
   void _next() {
     if (!(_form.currentState?.validate() ?? false)) return;
+    // Close the keyboard: the review must have the whole screen.
+    FocusScope.of(context).unfocus();
     context.read<BookingFlowBloc>().add(FlowAddressSubmitted(
       landmark: _landmark.text,
       text: _text.text,
@@ -395,9 +397,13 @@ class _AddressStepState extends State<_AddressStep> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: ListView(
+            // Not a lazy ListView: every field must exist for Form.validate()
+            // to check it, even when it's scrolled out of view.
+            child: SingleChildScrollView(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-              children: [
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                 const _SubmitFailureBanner(),
                 Text(l10n.addressMapTitle, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
                 const SizedBox(height: 4),
@@ -477,6 +483,7 @@ class _AddressStepState extends State<_AddressStep> {
                   ),
                 ),
               ],
+              ),
             ),
           ),
           Padding(
@@ -621,7 +628,7 @@ class _ReviewRow extends StatelessWidget {
                 Text(label, style: theme.textTheme.labelMedium),
                 Text(
                   value,
-                  key: valueKey == null ? null : ValueKey(valueKey),
+                  key: valueKey == null ? null : ValueKey<String>(valueKey!),
                   style: (emphasize ? theme.textTheme.titleMedium : theme.textTheme.bodyLarge)
                       ?.copyWith(fontWeight: emphasize ? FontWeight.w700 : null),
                 ),
